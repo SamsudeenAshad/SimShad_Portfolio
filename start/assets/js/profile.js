@@ -28,6 +28,70 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // GitHub iframe handling
+    const githubIframe = document.querySelector('.github-iframe-container iframe');
+    const iframeOverlay = document.querySelector('.iframe-overlay');
+    
+    if (githubIframe && iframeOverlay) {
+        // Hide overlay when iframe loads
+        githubIframe.addEventListener('load', function() {
+            setTimeout(() => {
+                iframeOverlay.style.opacity = '0';
+                setTimeout(() => {
+                    iframeOverlay.style.display = 'none';
+                }, 300);
+            }, 1000);
+        });
+        
+        // Handle iframe errors
+        githubIframe.addEventListener('error', function() {
+            const loadingMessage = iframeOverlay.querySelector('.loading-message');
+            if (loadingMessage) {
+                loadingMessage.innerHTML = `
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <p>Unable to load GitHub profile</p>
+                    <a href="https://github.com/SamsudeenAshad" target="_blank" class="btn btn-primary">
+                        <i class="fas fa-external-link-alt"></i>
+                        View on GitHub
+                    </a>
+                `;
+            }
+        });
+    }
+
+    // Animate GitHub stats on scroll
+    const statCards = document.querySelectorAll('.stat-card');
+    const statsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const target = entry.target;
+                const counter = target.querySelector('h3');
+                const targetValue = parseInt(counter.textContent);
+                
+                animateCounter(counter, targetValue);
+                statsObserver.unobserve(target);
+            }
+        });
+    });
+
+    statCards.forEach(card => {
+        statsObserver.observe(card);
+    });
+
+    function animateCounter(element, target) {
+        let current = 0;
+        const increment = target / 50;
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                element.textContent = target + (target >= 50 ? '+' : '');
+                clearInterval(timer);
+            } else {
+                element.textContent = Math.floor(current);
+            }
+        }, 30);
+    }
+
     // Enhanced mobile navigation
     const navToggle = document.createElement('button');
     navToggle.className = 'nav-toggle';
