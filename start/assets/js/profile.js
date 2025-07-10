@@ -453,6 +453,54 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // Profile photo handling
+    const profilePhotos = document.querySelectorAll('.profile-photo, .profile-avatar');
+    
+    profilePhotos.forEach(photo => {
+        photo.addEventListener('load', function() {
+            this.style.opacity = '1';
+        });
+        
+        photo.addEventListener('error', function() {
+            // Create fallback element
+            const fallback = document.createElement('div');
+            fallback.className = 'profile-fallback';
+            fallback.textContent = 'SA';
+            fallback.style.cssText = `
+                width: 100%;
+                height: 100%;
+                background: var(--gradient-primary);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                font-size: 2rem;
+                font-weight: bold;
+                border-radius: ${this.classList.contains('profile-avatar') ? '50%' : '20px'};
+            `;
+            
+            this.parentNode.replaceChild(fallback, this);
+        });
+    });
+
+    // Enhanced image loading animation
+    const imageContainers = document.querySelectorAll('.image-container');
+    const imageObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target.querySelector('img');
+                if (img) {
+                    img.style.animation = 'fadeInImage 0.5s ease forwards';
+                }
+                imageObserver.unobserve(entry.target);
+            }
+        });
+    });
+
+    imageContainers.forEach(container => {
+        imageObserver.observe(container);
+    });
+
     // Initialize everything
     console.log('Profile page loaded successfully!');
 });
