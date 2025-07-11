@@ -8,6 +8,19 @@ document.addEventListener('DOMContentLoaded', function() {
         offset: 100
     });
 
+    // Enhanced loading screen management
+    window.addEventListener('load', function() {
+        setTimeout(() => {
+            const loadingScreen = document.getElementById('loadingScreen');
+            if (loadingScreen) {
+                loadingScreen.classList.add('hidden');
+                setTimeout(() => {
+                    loadingScreen.remove();
+                }, 500);
+            }
+        }, 1000);
+    });
+    
     // Back to Top Button
     const backToTop = document.getElementById('backToTop');
     
@@ -525,6 +538,134 @@ document.addEventListener('DOMContentLoaded', function() {
     imageContainers.forEach(container => {
         containerObserver.observe(container);
     });
+
+    // Enhanced scroll animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const scrollObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                scrollObserver.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+    
+    // Observe all elements that should animate on scroll
+    document.querySelectorAll('.about-card, .skill-card, .project-card, .certification-card, .hero-content').forEach(el => {
+        el.classList.add('fade-in');
+        scrollObserver.observe(el);
+    });
+    
+    // Enhanced navigation active link highlighting
+    const sections = document.querySelectorAll('section');
+    const navItems = document.querySelectorAll('.nav-link');
+    
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (pageYOffset >= sectionTop - 200) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navItems.forEach(item => {
+            item.classList.remove('active');
+            if (item.getAttribute('href') === `#${current}`) {
+                item.classList.add('active');
+            }
+        });
+    });
+    
+    // Enhanced keyboard navigation
+    document.addEventListener('keydown', function(e) {
+        // Add keyboard shortcuts
+        if (e.key === 'Escape') {
+            // Close any open modals or menus
+            const navMenu = document.getElementById('nav-menu');
+            if (navMenu && navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+            }
+        }
+        
+        // Smooth scroll to top with Home key
+        if (e.key === 'Home' && e.ctrlKey) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+        
+        // Smooth scroll to bottom with End key
+        if (e.key === 'End' && e.ctrlKey) {
+            e.preventDefault();
+            window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: 'smooth'
+            });
+        }
+    });
+    
+    // Add loading animation to buttons
+    document.querySelectorAll('.btn, .download-btn, .project-link').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            // Add ripple effect
+            const ripple = document.createElement('span');
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+            
+            ripple.style.cssText = `
+                position: absolute;
+                width: ${size}px;
+                height: ${size}px;
+                left: ${x}px;
+                top: ${y}px;
+                background: rgba(255, 255, 255, 0.3);
+                border-radius: 50%;
+                transform: scale(0);
+                animation: buttonRipple 0.6s ease-out;
+                pointer-events: none;
+                z-index: 0;
+            `;
+            
+            this.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        });
+    });
+    
+    // Add button ripple animation CSS
+    const buttonRippleStyle = document.createElement('style');
+    buttonRippleStyle.textContent = `
+        @keyframes buttonRipple {
+            to {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+        
+        .btn, .download-btn, .project-link {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .form-group.error input,
+        .form-group.error textarea {
+            border-color: #ff4757 !important;
+            box-shadow: 0 0 10px rgba(255, 71, 87, 0.3) !important;
+        }
+    `;
+    document.head.appendChild(buttonRippleStyle);
 
     // Initialize everything
     console.log('Profile page loaded successfully!');
