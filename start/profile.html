@@ -1207,7 +1207,7 @@
                 <button class="cv-modal-close" onclick="closeCvPreview()" aria-label="Close CV preview">&times;</button>
             </div>
             <div class="cv-modal-body">
-                <iframe id="cvIframe" src="" title="CV Preview" allowfullscreen></iframe>
+                <iframe id="cvIframe" src="" title="CV Preview"></iframe>
             </div>
         </div>
     </div>
@@ -1219,7 +1219,7 @@
         function openCvPreview() {
             var modal = document.getElementById('cvModal');
             var iframe = document.getElementById('cvIframe');
-            iframe.src = '../Ashad CV White.pdf';
+            iframe.src = encodeURI('../Ashad CV White.pdf');
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
@@ -1239,7 +1239,7 @@
         });
 
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
+            if (e.key === 'Escape' && document.getElementById('cvModal').classList.contains('active')) {
                 closeCvPreview();
             }
         });
