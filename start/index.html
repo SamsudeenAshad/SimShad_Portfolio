@@ -139,6 +139,9 @@
             cursor: pointer;
             padding: 4px;
             z-index: 110;
+            background: none;
+            border: none;
+            -webkit-appearance: none;
         }
 
         .nav-toggle span {
@@ -525,11 +528,11 @@
                     <a href="profile.html#projects" class="nav-link">Projects</a>
                     <a href="profile.html#contact" class="nav-link">Contact</a>
                 </div>
-                <div class="nav-toggle" aria-label="Toggle navigation">
+                <button type="button" class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
                     <span></span>
                     <span></span>
                     <span></span>
-                </div>
+                </button>
             </div>
         </nav>
 
@@ -889,6 +892,7 @@
         function closeMenu() {
             navToggle.classList.remove('active');
             navLinks.classList.remove('active');
+            navToggle.setAttribute('aria-expanded', 'false');
             var spans = navToggle.querySelectorAll('span');
             spans[0].style.transform = '';
             spans[1].style.opacity   = '';
@@ -898,6 +902,7 @@
         navToggle.addEventListener('click', function () {
             var isOpen = this.classList.toggle('active');
             navLinks.classList.toggle('active');
+            this.setAttribute('aria-expanded', String(isOpen));
             var spans = this.querySelectorAll('span');
             if (isOpen) {
                 spans[0].style.transform = 'translateY(7px) rotate(45deg)';
