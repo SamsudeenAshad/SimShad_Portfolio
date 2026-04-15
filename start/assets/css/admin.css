@@ -897,7 +897,7 @@ input, textarea, select {
 .btn-sm {
     padding: 0.35rem 0.7rem;
     font-size: 0.75rem;
-    border-radius: 8px;
+    border-radius: var(--radius-sm);
 }
 
 .btn-sm i {
@@ -908,7 +908,7 @@ input, textarea, select {
     width: 32px;
     height: 32px;
     padding: 0;
-    border-radius: 8px;
+    border-radius: var(--radius-sm);
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -1033,7 +1033,7 @@ input, textarea, select {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 8px;
+    border-radius: var(--radius-sm);
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
     color: var(--text-muted);
