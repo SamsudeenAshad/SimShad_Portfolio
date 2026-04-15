@@ -143,8 +143,10 @@
       catDiv.setAttribute('data-aos-delay', String((ci + 1) * 100));
 
       const h3 = document.createElement('h3');
-      h3.innerHTML = '<i class="' + escapeHtml(cat.icon || 'fas fa-code') + '"></i> ';
-      h3.appendChild(document.createTextNode(cat.title || ''));
+      const h3Icon = document.createElement('i');
+      h3Icon.className = cat.icon || 'fas fa-code';
+      h3.appendChild(h3Icon);
+      h3.appendChild(document.createTextNode(' ' + (cat.title || '')));
       catDiv.appendChild(h3);
 
       const itemsDiv = document.createElement('div');
@@ -158,7 +160,9 @@
         const iconDiv = document.createElement('div');
         iconDiv.className = 'skill-icon';
         if (item.icon && (item.icon.startsWith('fa') || item.icon.includes(' fa'))) {
-          iconDiv.innerHTML = '<i class="' + escapeHtml(item.icon) + '"></i>';
+          const iEl = document.createElement('i');
+          iEl.className = item.icon;
+          iconDiv.appendChild(iEl);
         } else {
           const span = document.createElement('span');
           span.className = 'custom-icon';
@@ -410,14 +414,18 @@
       contactDiv.className = 'reference-contact';
       if (ref.email) {
         const pe = document.createElement('p');
-        pe.innerHTML = '<i class="fas fa-envelope"></i> ';
-        pe.appendChild(document.createTextNode(ref.email));
+        const emailIcon = document.createElement('i');
+        emailIcon.className = 'fas fa-envelope';
+        pe.appendChild(emailIcon);
+        pe.appendChild(document.createTextNode(' ' + ref.email));
         contactDiv.appendChild(pe);
       }
       if (ref.phone) {
         const pp = document.createElement('p');
-        pp.innerHTML = '<i class="fas fa-phone"></i> ';
-        pp.appendChild(document.createTextNode(ref.phone));
+        const phoneIcon = document.createElement('i');
+        phoneIcon.className = 'fas fa-phone';
+        pp.appendChild(phoneIcon);
+        pp.appendChild(document.createTextNode(' ' + ref.phone));
         contactDiv.appendChild(pp);
       }
       content.appendChild(contactDiv);

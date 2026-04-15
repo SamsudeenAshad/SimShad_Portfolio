@@ -443,8 +443,8 @@
     if (simpleHash(currentPw) !== stored) {
       return { success: false, message: 'Current password is incorrect.' };
     }
-    if (newPw.length < 4) {
-      return { success: false, message: 'New password must be at least 4 characters.' };
+    if (newPw.length < 8) {
+      return { success: false, message: 'New password must be at least 8 characters.' };
     }
     localStorage.setItem(KEYS.password, simpleHash(newPw));
     return { success: true, message: 'Password changed successfully!' };
@@ -532,7 +532,6 @@
   function openModal(title, bodyHtml, footerHtml) {
     const overlay = getModalOverlay();
     const h3 = overlay.querySelector('.modal-header h3');
-    h3.textContent = '';
     h3.textContent = title;
     overlay.querySelector('.modal-body').innerHTML = bodyHtml || '';
     overlay.querySelector('.modal-footer').innerHTML = footerHtml || '';
