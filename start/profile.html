@@ -72,6 +72,10 @@
                         <i class="fas fa-download"></i>
                         Download CV
                     </a>
+                    <button class="btn btn-cv-preview" onclick="openCvPreview()">
+                        <i class="fas fa-eye"></i>
+                        Preview CV
+                    </button>
                 </div>
             </div>
             <div class="hero-image">
@@ -1204,11 +1208,53 @@
         }
     </style>
 
+    <!-- CV Preview Modal -->
+    <div class="cv-modal-overlay" id="cvModal" role="dialog" aria-modal="true" aria-label="CV Preview">
+        <div class="cv-modal">
+            <div class="cv-modal-header">
+                <h3 class="cv-modal-title">CV Preview</h3>
+                <button class="cv-modal-close" onclick="closeCvPreview()" aria-label="Close CV preview">&times;</button>
+            </div>
+            <div class="cv-modal-body">
+                <iframe id="cvIframe" src="" title="CV Preview"></iframe>
+            </div>
+        </div>
+    </div>
+
     <!-- Three.js Background Canvas -->
     <canvas id="three-bg" class="three-bg-canvas"></canvas>
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="assets/js/profile.js"></script>
+    <script>
+        function openCvPreview() {
+            var modal = document.getElementById('cvModal');
+            var iframe = document.getElementById('cvIframe');
+            iframe.src = encodeURI('../Ashad CV White.pdf');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCvPreview() {
+            var modal = document.getElementById('cvModal');
+            var iframe = document.getElementById('cvIframe');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+            iframe.src = '';
+        }
+
+        document.getElementById('cvModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeCvPreview();
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && document.getElementById('cvModal').classList.contains('active')) {
+                closeCvPreview();
+            }
+        });
+    </script>
 </body>
 </html>
