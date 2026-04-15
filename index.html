@@ -1,23 +1,81 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Samsudeen Ashad - Portfolio</title>
+    <meta name="description" content="Samsudeen Ashad - Software Engineering Student, Full-Stack Developer, and Data Science Enthusiast.">
+    <meta name="theme-color" content="#0a0a0f">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👨‍💻</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #0a0a0f;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+        }
+        .splash {
+            text-align: center;
+            animation: fadeIn 0.6s ease forwards;
+        }
+        .splash-name {
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 50%, #EC4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+        .splash-tagline {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+        }
+        .splash-loader {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(255,255,255,0.08);
+            border-top-color: #8B5CF6;
+            border-right-color: #3B82F6;
+            border-radius: 50%;
+            margin: 0 auto;
+            animation: spin 0.7s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
 <body>
+    <div class="splash">
+        <div class="splash-name">Samsudeen Ashad</div>
+        <div class="splash-tagline">Software Engineer &bull; Developer &bull; Innovator</div>
+        <div class="splash-loader"></div>
+    </div>
     <script>
-        
-            // Function to redirect to another page after 5 seconds
-            function redirect() {
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.body.style.transition = 'opacity 0.4s ease';
+                document.body.style.opacity = '0';
                 setTimeout(function() {
-                    window.location.href = 'start/index.html'; // Replace with your destination URL
-                }, 1); // 1 milliseconds = 0.0001 seconds
-            }
-    
-            // Call the redirect function when the page loads
-            window.onload = redirect;
-        
+                    window.location.href = 'start/index.html';
+                }, 400);
+            }, 1200);
+        });
     </script>
-    
 </body>
 </html>
