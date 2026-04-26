@@ -86,6 +86,13 @@
     } catch { return []; }
   }
 
+  function isSafeImageUrl(url) {
+    try {
+      const parsed = new URL(url);
+      return parsed.protocol === 'https:' || parsed.protocol === 'http:';
+    } catch { return false; }
+  }
+
   // ─── Build gallery ───────────────────────────────────────────────────────
   function buildFilters(designs) {
     const bar = document.getElementById('filtersBar');
@@ -107,10 +114,11 @@
 
     const tools = (design.tools || '').split(',').map(t => t.trim()).filter(Boolean);
     const toolTags = tools.map(t => `<span class="design-tool-tag">${escHtml(t)}</span>`).join('');
+    const safeImg = design.imageUrl && isSafeImageUrl(design.imageUrl);
 
     card.innerHTML = `
       <div class="design-card-image">
-        ${design.imageUrl
+        ${safeImg
           ? `<img src="${escAttr(design.imageUrl)}" alt="${escAttr(design.title)}" loading="lazy">`
           : `<div class="design-card-placeholder"><span>🎨</span><span>No preview</span></div>`}
         <div class="design-card-overlay">
@@ -163,7 +171,7 @@
     // Image area (keep close button)
     const closeBtn = document.getElementById('lightboxClose');
     imgWrap.innerHTML = '';
-    if (design.imageUrl) {
+    if (design.imageUrl && isSafeImageUrl(design.imageUrl)) {
       const img = document.createElement('img');
       img.src = design.imageUrl;
       img.alt = design.title;

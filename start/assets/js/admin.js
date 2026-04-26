@@ -17,7 +17,18 @@
   }
 
   function generateId() {
-    return Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+    if (typeof crypto !== 'undefined' && crypto.randomUUID) {
+      return crypto.randomUUID();
+    }
+    return Date.now().toString(36) + Math.random().toString(36).slice(2, 12);
+  }
+
+  // Only allow http/https URLs for image previews
+  function isSafeImageUrl(url) {
+    try {
+      const parsed = new URL(url);
+      return parsed.protocol === 'https:' || parsed.protocol === 'http:';
+    } catch { return false; }
   }
 
   // ─── Auth ────────────────────────────────────────────────────────────────
@@ -160,7 +171,7 @@
     item.className = 'design-item';
     item.innerHTML = `
       <div class="design-item-thumb">
-        ${design.imageUrl
+        ${design.imageUrl && isSafeImageUrl(design.imageUrl)
           ? `<img src="${escAttr(design.imageUrl)}" alt="${escAttr(design.title)}" loading="lazy">`
           : '🎨'}
       </div>
@@ -211,7 +222,7 @@
     imgIn.value         = design ? (design.imageUrl || '') : '';
     dateIn.value        = design ? (design.date || '') : '';
 
-    if (design?.imageUrl) {
+    if (design?.imageUrl && isSafeImageUrl(design.imageUrl)) {
       preview.src = design.imageUrl;
       preview.classList.add('show');
     } else {
@@ -236,10 +247,14 @@
     const cat   = document.getElementById('designCategory').value.trim();
     const desc  = document.getElementById('designDesc').value.trim();
     const tools = document.getElementById('designTools').value.trim();
-    const img   = document.getElementById('designImageUrl').value.trim();
+    const imgRaw = document.getElementById('designImageUrl').value.trim();
     const date  = document.getElementById('designDate').value;
 
     if (!title || !cat) { toast('Title and Category are required.', 'error'); return; }
+
+    // Only allow safe http/https image URLs (or empty)
+    const img = imgRaw && isSafeImageUrl(imgRaw) ? imgRaw : '';
+    if (imgRaw && !img) { toast('Image URL must be a valid http/https URL.', 'error'); return; }
 
     const designs = loadDesigns();
 
@@ -326,10 +341,14 @@
     document.getElementById('designImageUrl').addEventListener('input', e => {
       const preview = document.getElementById('imagePreview');
       const url = e.target.value.trim();
-      if (url) {
+      if (url && isSafeImageUrl(url)) {
         preview.src = url;
         preview.classList.add('show');
-        preview.onerror = () => { preview.classList.remove('show'); };
+        preview.onerror = () => {
+          preview.classList.remove('show');
+          preview.src = '';
+          toast('Could not load image from that URL.', 'error');
+        };
       } else {
         preview.classList.remove('show');
         preview.src = '';
