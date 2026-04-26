@@ -340,9 +340,17 @@
     // Image URL preview
     document.getElementById('designImageUrl').addEventListener('input', e => {
       const preview = document.getElementById('imagePreview');
-      const url = e.target.value.trim();
-      if (url && isSafeImageUrl(url)) {
-        preview.src = url;
+      const raw = e.target.value.trim();
+      let safeUrl = '';
+      try {
+        const parsed = new URL(raw);
+        if (parsed.protocol === 'https:' || parsed.protocol === 'http:') {
+          safeUrl = parsed.href;
+        }
+      } catch { /* invalid URL */ }
+
+      if (safeUrl) {
+        preview.src = safeUrl;
         preview.classList.add('show');
         preview.onerror = () => {
           preview.classList.remove('show');
