@@ -1,0 +1,120 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>Designs Gallery — Samsudeen Ashad</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="description" content="UI/UX and graphic design portfolio of Samsudeen Ashad — crafting beautiful, functional interfaces and branding.">
+    <meta name="author" content="Samsudeen Ashad">
+    <meta name="theme-color" content="#8B5CF6">
+    <link rel="stylesheet" href="assets/css/profile.css" />
+    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">SAMSUDEEN ASHAD</a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="profile.html#home" class="nav-link">Home</a>
+                <a href="profile.html#about" class="nav-link">About</a>
+                <a href="profile.html#skills" class="nav-link">Skills</a>
+                <a href="profile.html#projects" class="nav-link">Projects</a>
+                <a href="designs.html" class="nav-link active">Designs</a>
+                <a href="profile.html#github-profile" class="nav-link">GitHub</a>
+                <a href="profile.html#experience" class="nav-link">Experience</a>
+                <a href="profile.html#certifications" class="nav-link">Certifications</a>
+                <a href="profile.html#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Designs Hero -->
+    <section class="designs-hero">
+        <div class="designs-hero-content" data-aos="fade-up">
+            <h1>Design Gallery</h1>
+            <p>UI/UX interfaces, branding, and visual experiences crafted with attention to detail and purpose.</p>
+        </div>
+    </section>
+
+    <!-- Filter Bar -->
+    <div class="designs-filters" id="filtersBar" data-aos="fade-up" data-aos-delay="100">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <!-- Additional filter buttons injected by designs.js -->
+    </div>
+
+    <!-- Gallery -->
+    <section class="designs-gallery">
+        <div class="gallery-grid" id="galleryGrid">
+            <!-- Cards injected by designs.js -->
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox-overlay" id="lightboxOverlay" role="dialog" aria-modal="true" aria-label="Design preview">
+        <div class="lightbox-container">
+            <div class="lightbox-image-wrap" id="lightboxImageWrap">
+                <button class="lightbox-close" id="lightboxClose" aria-label="Close preview">&times;</button>
+            </div>
+            <div class="lightbox-info">
+                <p class="lightbox-category" id="lightboxCategory"></p>
+                <h2 class="lightbox-title" id="lightboxTitle"></h2>
+                <p class="lightbox-desc" id="lightboxDesc"></p>
+                <div class="lightbox-tools" id="lightboxTools"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Three.js canvas -->
+    <canvas id="three-bg" class="three-bg-canvas"></canvas>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>Samsudeen Ashad</h3>
+                    <p>Full-Stack Developer &amp; Designer</p>
+                </div>
+                <div class="footer-links">
+                    <a href="profile.html#home">Home</a>
+                    <a href="profile.html#about">About</a>
+                    <a href="profile.html#projects">Projects</a>
+                    <a href="designs.html">Designs</a>
+                    <a href="profile.html#contact">Contact</a>
+                </div>
+                <div class="footer-social">
+                    <a href="https://github.com/SamsudeenAshad" class="social-link" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/samsudeen-ashad-90b281255" class="social-link" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="tel:+94705390110" class="social-link"><i class="fas fa-phone"></i></a>
+                    <a href="mailto:samsudeenashad@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Samsudeen Ashad. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="assets/js/designs.js"></script>
+</body>
+</html>
