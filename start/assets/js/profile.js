@@ -310,28 +310,53 @@
     const githubReposCount = document.getElementById('githubReposCount');
     const githubFollowersCount = document.getElementById('githubFollowersCount');
     const githubFollowingCount = document.getElementById('githubFollowingCount');
+    const githubContributionChart = document.getElementById('githubContributionChart');
+    const githubChartFallback = document.getElementById('githubChartFallback');
+    const githubCacheKey = 'samsudeen-github-stats-cache-v1';
+    const THIRTY_MINUTES_IN_MS = 30 * 60 * 1000;
+
+    if (githubContributionChart && githubChartFallback) {
+      githubContributionChart.addEventListener('error', () => {
+        githubContributionChart.style.display = 'none';
+        githubChartFallback.hidden = false;
+      });
+    }
+
+    function applyGitHubStats(data) {
+      if (typeof data.public_repos === 'number') {
+        githubReposCount.textContent = `${data.public_repos}+`;
+      }
+      if (typeof data.followers === 'number') {
+        githubFollowersCount.textContent = `${data.followers}+`;
+      }
+      if (typeof data.following === 'number') {
+        githubFollowingCount.textContent = `${data.following}+`;
+      }
+    }
 
     async function syncGitHubStats() {
       if (!githubReposCount || !githubFollowersCount || !githubFollowingCount) return;
 
       try {
+        const cached = localStorage.getItem(githubCacheKey);
+        if (cached) {
+          const parsed = JSON.parse(cached);
+          if (parsed && Date.now() - parsed.timestamp < THIRTY_MINUTES_IN_MS && parsed.data) {
+            applyGitHubStats(parsed.data);
+            return;
+          }
+        }
+
         const res = await fetch('https://api.github.com/users/SamsudeenAshad', {
           headers: { Accept: 'application/vnd.github+json' },
         });
         if (!res.ok) return;
 
         const data = await res.json();
-        if (typeof data.public_repos === 'number') {
-          githubReposCount.textContent = `${data.public_repos}+`;
-        }
-        if (typeof data.followers === 'number') {
-          githubFollowersCount.textContent = `${data.followers}+`;
-        }
-        if (typeof data.following === 'number') {
-          githubFollowingCount.textContent = `${data.following}+`;
-        }
+        applyGitHubStats(data);
+        localStorage.setItem(githubCacheKey, JSON.stringify({ timestamp: Date.now(), data }));
       } catch (error) {
-        // Keep existing fallback values when network requests fail.
+        console.warn('GitHub stats sync failed; keeping existing displayed values.', error);
       }
     }
 

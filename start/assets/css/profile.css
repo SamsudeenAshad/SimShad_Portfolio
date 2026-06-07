@@ -1122,6 +1122,12 @@ section {
     border-radius: 10px;
 }
 
+.github-chart-fallback {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
 .linkedin-sync-body {
     background: rgba(14, 22, 44, 0.55);
     border: 1px solid rgba(59,130,246,0.25);
