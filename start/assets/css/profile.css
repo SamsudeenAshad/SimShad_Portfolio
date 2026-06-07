@@ -468,28 +468,31 @@ section {
 .hero-image { margin-top: 2.5rem; }
 
 .profile-card {
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    border-radius: var(--radius-lg);
-    padding: 2rem;
+    background: linear-gradient(160deg, rgba(24, 18, 41, 0.9), rgba(14, 17, 37, 0.88));
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 24px;
+    padding: 2.25rem 2rem;
     text-align: center;
-    backdrop-filter: var(--glass-blur);
-    -webkit-backdrop-filter: var(--glass-blur);
-    max-width: 300px;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    max-width: 340px;
     margin: 0 auto;
-    transition: transform 0.4s var(--ease-out), box-shadow 0.4s;
+    box-shadow: 0 12px 40px rgba(8, 13, 33, 0.45);
+    transition: transform 0.4s var(--ease-out), box-shadow 0.4s, border-color 0.4s;
 }
 .profile-card:hover {
     transform: translateY(-4px);
-    box-shadow: var(--shadow-glow);
+    border-color: rgba(92, 128, 255, 0.5);
+    box-shadow: 0 16px 45px rgba(30, 76, 214, 0.35);
 }
 
 .profile-img { margin-bottom: 1rem; }
 
 .profile-avatar {
-    width: 130px; height: 130px;
+    width: 150px; height: 150px;
     border-radius: 50%;
     object-fit: cover;
+    object-position: center top;
     border: 3px solid transparent;
     background-image: var(--gradient-primary);
     background-origin: border-box;
@@ -502,8 +505,8 @@ section {
     box-shadow: 0 0 35px rgba(139,92,246,0.3);
 }
 
-.profile-info h3 { color: var(--text-primary); font-weight: 700; margin-bottom: 0.35rem; }
-.profile-info p   { color: var(--text-muted); font-size: 0.9rem; }
+.profile-info h3 { color: var(--text-primary); font-weight: 800; font-size: 2rem; margin-bottom: 0.35rem; line-height: 1.2; }
+.profile-info p   { color: rgba(255,255,255,0.72); font-size: 1.2rem; }
 
 /* Scroll indicator */
 .scroll-indicator {
@@ -1059,83 +1062,84 @@ section {
 
 .stat-card p { color: var(--text-muted); font-weight: 500; font-size: 0.9rem; }
 
-/* GitHub iframe browser mockup */
-.github-iframe-container {
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    backdrop-filter: var(--glass-blur);
-    -webkit-backdrop-filter: var(--glass-blur);
+/* GitHub + LinkedIn social sync cards */
+.social-sync-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
     margin-bottom: 3rem;
 }
 
-.iframe-header {
+.social-sync-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    transition: transform 0.35s var(--ease-out), box-shadow 0.35s, border-color 0.35s;
+}
+
+.social-sync-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--glass-border-hover);
+    box-shadow: var(--shadow-glow);
+}
+
+.social-sync-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0.85rem 1.5rem;
-    background: rgba(255,255,255,0.04);
-    border-bottom: 1px solid var(--glass-border);
+    margin-bottom: 0.85rem;
     gap: 1rem;
 }
 
-.iframe-controls { display: flex; gap: 0.5rem; flex-shrink: 0; }
-
-.control-dot { width: 12px; height: 12px; border-radius: 50%; }
-.control-dot.red    { background: #ff5f57; }
-.control-dot.yellow { background: #ffbd2e; }
-.control-dot.green  { background: #28ca42; }
-
-.iframe-title {
+.social-sync-title {
     color: var(--text-primary);
     font-weight: 600;
     font-size: 0.9rem;
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    min-width: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
 }
 
-.iframe-actions { flex-shrink: 0; }
-.iframe-actions .btn { padding: 0.5rem 1rem; font-size: 0.8rem; }
-
-.iframe-wrapper { position: relative; height: 600px; }
-.iframe-wrapper iframe { width: 100%; height: 100%; border: none; }
-
-.iframe-overlay {
-    position: absolute;
-    inset: 0;
-    background: var(--glass-bg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 1;
-    transition: opacity 0.4s;
-    pointer-events: none;
+.social-sync-description {
+    color: var(--text-muted);
+    margin-bottom: 0.9rem;
+    font-size: 0.9rem;
 }
 
-.loading-message { text-align: center; color: var(--text-primary); }
-.loading-message i {
-    font-size: 2rem;
-    margin-bottom: 0.75rem;
+.github-chart-wrap {
+    background: rgba(8,10,20,0.5);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: var(--radius-md);
+    padding: 0.75rem;
+}
+
+.github-chart {
+    width: 100%;
     display: block;
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    border-radius: 10px;
 }
 
-.loading-spinner {
-    width: 40px; height: 40px;
-    border: 3px solid rgba(255,255,255,0.08);
-    border-top: 3px solid var(--accent-blue);
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin: 1rem auto;
+.linkedin-sync-body {
+    background: rgba(14, 22, 44, 0.55);
+    border: 1px solid rgba(59,130,246,0.25);
+    border-radius: var(--radius-md);
+    padding: 1rem;
+}
+
+.linkedin-sync-text {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 0.6rem;
+}
+
+.linkedin-sync-link {
+    color: #8ec5ff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    word-break: break-word;
 }
 
 /* GitHub highlights */
@@ -1805,10 +1809,8 @@ section {
     .github-profile { padding: 4rem 1.25rem; }
     .github-stats { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
     .stat-card h3 { font-size: 2rem; }
-    .iframe-wrapper { height: 400px; }
-    .iframe-header { flex-wrap: wrap; gap: 0.5rem; padding: 0.75rem 1rem; }
-    .iframe-title { font-size: 0.8rem; order: 2; flex-basis: 100%; }
-    .iframe-actions { order: 1; }
+    .social-sync-grid { grid-template-columns: 1fr; }
+    .social-sync-header { flex-wrap: wrap; }
     .activity-grid { grid-template-columns: 1fr; }
 
     /* Certifications */

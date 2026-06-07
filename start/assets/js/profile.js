@@ -306,33 +306,36 @@
       });
     }
 
-    // ── GitHub Iframe Handling ────────────────────────────────────────
-    const githubIframe = document.querySelector('.github-iframe-container iframe');
-    const iframeOverlay = document.querySelector('.iframe-overlay');
+    // ── Live GitHub Stats Sync ────────────────────────────────────────
+    const githubReposCount = document.getElementById('githubReposCount');
+    const githubFollowersCount = document.getElementById('githubFollowersCount');
+    const githubFollowingCount = document.getElementById('githubFollowingCount');
 
-    if (githubIframe && iframeOverlay) {
-      githubIframe.addEventListener('load', () => {
-        setTimeout(() => {
-          iframeOverlay.style.opacity = '0';
-          setTimeout(() => {
-            iframeOverlay.style.display = 'none';
-          }, 300);
-        }, 1000);
-      });
+    async function syncGitHubStats() {
+      if (!githubReposCount || !githubFollowersCount || !githubFollowingCount) return;
 
-      githubIframe.addEventListener('error', () => {
-        const msg = iframeOverlay.querySelector('.loading-message');
-        if (msg) {
-          msg.innerHTML = `
-            <i class="fas fa-exclamation-triangle"></i>
-            <p>Unable to load GitHub profile</p>
-            <a href="https://github.com/SamsudeenAshad" target="_blank" class="btn btn-primary">
-              <i class="fas fa-external-link-alt"></i>
-              View on GitHub
-            </a>`;
+      try {
+        const res = await fetch('https://api.github.com/users/SamsudeenAshad', {
+          headers: { Accept: 'application/vnd.github+json' },
+        });
+        if (!res.ok) return;
+
+        const data = await res.json();
+        if (typeof data.public_repos === 'number') {
+          githubReposCount.textContent = `${data.public_repos}+`;
         }
-      });
+        if (typeof data.followers === 'number') {
+          githubFollowersCount.textContent = `${data.followers}+`;
+        }
+        if (typeof data.following === 'number') {
+          githubFollowingCount.textContent = `${data.following}+`;
+        }
+      } catch (error) {
+        // Keep existing fallback values when network requests fail.
+      }
     }
+
+    syncGitHubStats();
 
     // ── Counter Animations ───────────────────────────────────────────
     function animateCounter(element, target) {
