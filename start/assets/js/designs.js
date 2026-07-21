@@ -244,7 +244,9 @@
 
   // ─── Init ──────────────────────────────────────────────────────────────
   document.addEventListener('DOMContentLoaded', () => {
-    AOS.init({ duration: 700, once: true, offset: 60 });
+    if (window.AOS && typeof window.AOS.init === 'function') {
+      window.AOS.init({ duration: 700, once: true, offset: 60 });
+    }
     initThreeBackground();
     initNavbar();
     initBackToTop();
