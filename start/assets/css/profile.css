@@ -540,6 +540,7 @@ section {
     width: 130px; height: 130px;
     border-radius: 50%;
     object-fit: cover;
+    object-position: center 20%;
     border: 3px solid transparent;
     background-image: var(--gradient-primary);
     background-origin: border-box;
