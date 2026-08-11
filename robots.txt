@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://samsudeenashad.github.io/SimShad_Portfolio/sitemap.xml

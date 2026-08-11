@@ -1,0 +1,19 @@
+# Samsudeen Ashad Portfolio
+
+This website presents the professional portfolio of Samsudeen Ashad, a Software Engineering student focused on full-stack development, data science, and machine learning.
+
+## Primary Pages
+- Home: https://samsudeenashad.github.io/SimShad_Portfolio/start/index.html
+- Professional Profile: https://samsudeenashad.github.io/SimShad_Portfolio/start/profile.html
+- Design Gallery: https://samsudeenashad.github.io/SimShad_Portfolio/start/designs.html
+
+## Key Topics
+- Software engineering projects
+- Full-stack development skills
+- Data science and machine learning interests
+- UI/UX and design portfolio work
+
+## Contact
+- Email: samsudeenashad@gmail.com
+- GitHub: https://github.com/SamsudeenAshad
+- LinkedIn: https://www.linkedin.com/in/samsudeen-ashad-90b281255
