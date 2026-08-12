@@ -389,7 +389,7 @@
       { icon: 'fas fa-envelope', title: 'Email', value: 'samsudeenashad@gmail.com', link: 'mailto:samsudeenashad@gmail.com', isExternal: false },
       { icon: 'fas fa-phone', title: 'Phone', value: '+94 70 539 0110', link: 'tel:+94705390110', isExternal: false },
       { icon: 'fab fa-github', title: 'GitHub', value: 'github.com/SamsudeenAshad', link: 'https://github.com/SamsudeenAshad', isExternal: true },
-      { icon: 'fab fa-linkedin', title: 'LinkedIn', value: 'linkedin.com/in/samsudeen-ashad-90b281255', link: 'https://www.linkedin.com/in/samsudeen-ashad-90b281255', isExternal: true },
+      { icon: 'fab fa-linkedin', title: 'LinkedIn', value: 'linkedin.com/in/samsudeenashad/', link: 'https://www.linkedin.com/in/samsudeenashad/', isExternal: true },
       { icon: 'fas fa-map-marker-alt', title: 'Location', value: 'Sri Lanka | Available for Remote Work', link: '', isExternal: false },
       { icon: 'fas fa-globe', title: 'Languages', value: 'English (Advanced), Sinhala (Native), Tamil (Native)', link: '', isExternal: false },
     ],
