@@ -1,19 +1,20 @@
 # Samsudeen Ashad Portfolio
 
-This website presents the professional portfolio of Samsudeen Ashad, a Software Engineering student focused on full-stack development, data science, and machine learning.
+This website presents the professional profile of Samsudeen Ashad, a Sri Lankan Software Engineer and AI Automation Developer focused on RAG, agentic AI systems, intelligent automation, and software engineering.
 
 ## Primary Pages
 - Home: https://samsudeenashad.github.io/SimShad_Portfolio/start/index.html
+- Canonical Entity Page: https://samsudeenashad.github.io/SimShad_Portfolio/about/samsudeen-ashad.html
 - Professional Profile: https://samsudeenashad.github.io/SimShad_Portfolio/start/profile.html
 - Design Gallery: https://samsudeenashad.github.io/SimShad_Portfolio/start/designs.html
 
 ## Key Topics
-- Software engineering projects
-- Full-stack development skills
-- Data science and machine learning interests
-- UI/UX and design portfolio work
+- AI automation projects and workflows
+- Retrieval-Augmented Generation (RAG) and agentic AI systems
+- Software engineering projects and backend development
+- Open-source development and technical portfolio work
 
 ## Contact
 - Email: samsudeenashad@gmail.com
 - GitHub: https://github.com/SamsudeenAshad
-- LinkedIn: https://www.linkedin.com/in/samsudeen-ashad-90b281255
+- LinkedIn: https://www.linkedin.com/in/samsudeenashad/
