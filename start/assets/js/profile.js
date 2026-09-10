@@ -510,23 +510,30 @@
         });
         if (!isValid) return;
 
-        submitBtn.textContent = 'Sending...';
+        submitBtn.textContent = 'Opening Email...';
         submitBtn.disabled = true;
         submitBtn.style.opacity = '0.7';
 
-        // Simulated submission
-        setTimeout(() => {
-          submitBtn.textContent = 'Message Sent!';
-          submitBtn.style.background = 'var(--accent-green)';
-          contactForm.reset();
+        const recipient = 'samsudeenashad@gmail.com';
+        const name = contactForm.elements.namedItem('name').value.trim();
+        const email = contactForm.elements.namedItem('email').value.trim();
+        const subject = contactForm.elements.namedItem('subject').value.trim();
+        const message = contactForm.elements.namedItem('message').value.trim();
 
-          setTimeout(() => {
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
-            submitBtn.style.opacity = '1';
-            submitBtn.style.background = '';
-          }, 3000);
-        }, 2000);
+        const mailSubject = encodeURIComponent(subject);
+        const mailBody = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+        window.location.href = `mailto:${recipient}?subject=${mailSubject}&body=${mailBody}`;
+
+        submitBtn.textContent = 'Message Ready!';
+        submitBtn.style.background = 'var(--accent-green)';
+        contactForm.reset();
+
+        setTimeout(() => {
+          submitBtn.textContent = originalText;
+          submitBtn.disabled = false;
+          submitBtn.style.opacity = '1';
+          submitBtn.style.background = '';
+        }, 3000);
       });
 
       formInputs.forEach((input) => {
