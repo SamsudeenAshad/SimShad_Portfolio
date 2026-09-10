@@ -409,6 +409,47 @@
 
     const EMAIL_RE = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/;
 
+    function registerWebMCPTool(form) {
+      const modelContext = navigator.modelContext;
+      if (!form || !modelContext || typeof modelContext.registerTool !== 'function') return;
+
+      modelContext.registerTool({
+        name: 'contactSamsudeenAshad',
+        description:
+          'Send a profile contact message to Samsudeen Ashad and return submission confirmation details.',
+        inputSchema: {
+          type: 'object',
+          properties: {
+            name: { type: 'string', minLength: 2 },
+            email: { type: 'string', format: 'email' },
+            subject: { type: 'string', minLength: 5 },
+            message: { type: 'string', minLength: 10 },
+          },
+          required: ['name', 'email', 'subject', 'message'],
+          additionalProperties: false,
+        },
+        execute: async (payload) => {
+          const fields = ['name', 'email', 'subject', 'message'];
+          fields.forEach((field) => {
+            const input = form.elements.namedItem(field);
+            if (input && typeof payload[field] === 'string') input.value = payload[field];
+          });
+
+          if (form.requestSubmit) {
+            form.requestSubmit();
+          } else {
+            form.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
+          }
+
+          return {
+            status: 'submitted',
+            recipient: 'samsudeenashad@gmail.com',
+            fields,
+          };
+        },
+      });
+    }
+
     function showFieldError(field, message) {
       field.style.borderColor = '#ef4444';
       let el = field.parentNode.querySelector('.field-error');
@@ -454,6 +495,7 @@
     }
 
     if (contactForm) {
+      registerWebMCPTool(contactForm);
       const formInputs = contactForm.querySelectorAll('input, textarea');
 
       contactForm.addEventListener('submit', (e) => {
