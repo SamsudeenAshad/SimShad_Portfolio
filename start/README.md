@@ -49,6 +49,7 @@ A modern, responsive portfolio website showcasing skills, projects, and experien
 - Intersection Observer API
 - Smooth scrolling
 - Form validation
+- WebMCP-ready contact form metadata and tool registration
 - Local storage for theme preferences
 - Performance optimizations
 
