@@ -61,7 +61,7 @@
     const data = getData('hero');
     if (!data) return;
 
-    const titleEl = document.querySelector('.hero-title');
+    const titleEl = document.querySelector('[data-profile-name], .hero-title');
     if (titleEl) {
       titleEl.innerHTML = '';
       const highlight = document.createElement('span');
@@ -77,7 +77,7 @@
     const desc = document.querySelector('.hero-description');
     if (desc) desc.textContent = data.description || '';
 
-    const img = document.querySelector('.profile-avatar');
+    const img = document.querySelector('.profile-avatar, .profile-photo');
     if (img && data.profileImage) {
       const safe = sanitizeUrl(data.profileImage);
       if (safe) img.setAttribute('src', safe);

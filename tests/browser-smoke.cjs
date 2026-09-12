@@ -166,7 +166,7 @@ async function profileContracts() {
       // Exercise custom validation without a valid message or external navigation.
       await form.evaluate(el => el.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true })));
       assert.ok(await page.locator('.field-error, [aria-invalid="true"]').count(), 'Expose invalid input feedback');
-      assert.equal(page.url(), `${BASE}/start/profile.html`);
+      assert.equal(page.url(), `${BASE}/start/index.html#home`);
       assert.ok(await page.locator('a[href="mailto:samsudeenashad@gmail.com"]').count());
       await assertHealthy(page);
     } finally { await ctx.close(); }
@@ -226,7 +226,7 @@ async function localStorageOverrides() {
         localStorage.setItem('portfolio_contact', JSON.stringify([{ title: 'Email', value: 'qa@example.com', link: 'mailto:qa@example.com' }, { title: 'Phone', value: '+1234567890', link: 'tel:+1234567890' }]));
       });
       const page = await open(ctx, 'start/profile.html');
-      assert.equal((await page.locator('.hero-title').innerText()).replace(/\s+/g, ' ').trim(), 'QA Profile');
+      assert.equal((await page.locator('[data-profile-name]').textContent()).replace(/\s+/g, ' ').trim(), 'QA Profile');
       assert.match(await page.locator('.about-text').innerText(), /Stored biography/);
       assert.equal(await page.locator('.project-card').count(), 1);
       assert.match(await page.locator('.project-card').innerText(), /Stored AI project/);
@@ -277,45 +277,18 @@ async function gallery() {
 }
 
 async function projectExplorer() {
-  await check('Selected work filters update cards and accessible filter state', async () => {
+  await check('Legacy project links resolve to the single complete project collection', async () => {
     const ctx = await context({ reducedMotion: 'reduce' });
     try {
-      const page = await open(ctx, 'start/index.html');
-      assert.equal(await page.locator('.selected-project:visible').count(), 3);
-      const ai = page.locator('[data-project-filter="ai"]');
-      await ai.focus();
-      await page.keyboard.press('Space');
-      assert.equal(await ai.getAttribute('aria-pressed'), 'true');
-      assert.equal(await page.locator('.selected-project:visible').count(), 1);
-      assert.equal(await page.locator('.selected-project:visible').getAttribute('data-project'), 'quizer');
-      await page.locator('[data-project-filter="web"]').click();
-      assert.equal(await page.locator('.selected-project:visible').count(), 2);
-      assert.equal(await ai.getAttribute('aria-pressed'), 'false');
-      await page.locator('[data-project-filter="all"]').click();
-      assert.equal(await page.locator('.selected-project:visible').count(), 3);
-      assert.match(await page.locator('[data-work-count]').innerText(), /3/);
-      await assertHealthy(page);
-    } finally { await ctx.close(); }
-  });
-  await check('Project details retain source URL, contain keyboard focus and close with Escape', async () => {
-    const ctx = await context({ reducedMotion: 'reduce' });
-    try {
-      const page = await open(ctx, 'start/index.html');
-      const trigger = page.locator('[data-project-open="quizer"]');
-      await trigger.focus();
-      await page.keyboard.press('Enter');
-      const dialog = page.locator('#project-dialog');
-      await dialog.waitFor({ state: 'visible' });
-      assert.match(await page.locator('#project-dialog-title').innerText(), /Quizer/i);
-      assert.equal(await page.locator('#project-dialog-source').getAttribute('href'), preservedProjectLinks[0]);
-      for (let i = 0; i < 6; i++) {
-        await page.keyboard.press('Tab');
-        assert.ok(await dialog.evaluate(el => el.contains(document.activeElement)), 'Focus stays in the modal');
+      for (const route of ['start/index.html#work', 'start/profile.html#projects']) {
+        const page = await open(ctx, route);
+        await page.waitForURL('**/index.html#projects');
+        assert.equal(await page.locator('#projects').count(), 1);
+        assert.equal(await page.locator('.project-card').count(), 7);
+        assert.equal(await page.locator('h1').count(), 1);
+        await assertHealthy(page);
+        await page.close();
       }
-      await page.keyboard.press('Escape');
-      await dialog.waitFor({ state: 'hidden' });
-      assert.ok(await trigger.evaluate(el => document.activeElement === el), 'Escape restores project focus');
-      await assertHealthy(page);
     } finally { await ctx.close(); }
   });
 }
@@ -348,7 +321,7 @@ async function quickNavigation() {
         await page.keyboard.press('Control+k');
         await search.fill('projects');
         await page.keyboard.press('Enter');
-        await page.waitForURL('**/profile.html#projects');
+        await page.waitForURL('**/index.html#projects');
         await assertHealthy(page);
       } finally { await ctx.close(); }
     });
@@ -412,11 +385,12 @@ async function noJavaScript() {
       const ctx = await context({ javaScriptEnabled: false });
       try {
         const page = await open(ctx, route);
+        if (route.includes('profile')) await page.getByRole('link', { name: 'Open portfolio' }).click();
         assert.ok(await page.locator('h1').isVisible());
         const cv = page.locator('a[download]').first();
         assert.ok(await cv.isVisible(), 'Download CTA remains available');
         assert.ok(await page.locator('a[href="mailto:samsudeenashad@gmail.com"]').count());
-        const projectSelector = route.includes('profile') ? '.project-card' : '.selected-project';
+        const projectSelector = '.project-card';
         assert.ok(await page.locator(projectSelector).first().isVisible(), 'Projects remain readable');
         await assertNoOverflow(page);
         await assertHealthy(page);

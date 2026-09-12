@@ -2,6 +2,15 @@
 (() => {
   'use strict';
   function init() {
+    // Preserve bookmarks from the former home and profile layouts.
+    function resolveLegacyHash() {
+      const target = { '#work': '#projects', '#expertise': '#skills' }[location.hash];
+      if (!target || !document.querySelector(target)) return;
+      history.replaceState(null, '', location.pathname + location.search + target);
+      document.querySelector(target).scrollIntoView();
+    }
+    resolveLegacyHash();
+    addEventListener('hashchange', resolveLegacyHash);
     const reduced = matchMedia('(prefers-reduced-motion: reduce)');
     // Keep Tab within the active modal, including at the browser chrome boundary.
     document.addEventListener('keydown', event => {
@@ -44,7 +53,7 @@
       }
     }
     document.querySelectorAll('[data-copy-email]').forEach(button => {
-      button.addEventListener('click', () => copyEmail(button.dataset.copyEmail || 'samsudeenashad@gmail.com'));
+      button.addEventListener('click', () => copyEmail(button.dataset.copyEmail || document.querySelector('.contact-items a[href^="mailto:"]')?.getAttribute('href').slice(7).split('?')[0] || 'samsudeenashad@gmail.com'));
     });
     document.querySelectorAll('[data-year]').forEach(el => { el.textContent = new Date().getFullYear(); });
     const clocks = document.querySelectorAll('[data-local-time]');
@@ -113,9 +122,9 @@
     // Native modal dialogs provide focus containment and Escape dismissal.
     if (!('HTMLDialogElement' in window)) return;
     const prefix = location.pathname.includes('/about/') ? '../start/' : '';
-    const profile = prefix + 'profile.html';
+    const profile = location.pathname.endsWith('/start/index.html') ? '' : prefix + 'index.html';
     const commands = [
-      ['Home', prefix + 'index.html', 'Navigate'],
+      ['Home', profile + '#home', 'Navigate'],
       ['About & profile', profile + '#about', 'Navigate'],
       ['Projects & source code', profile + '#projects', 'Navigate'],
       ['Skills & technologies', profile + '#skills', 'Navigate'],

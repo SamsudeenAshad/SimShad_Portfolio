@@ -59,7 +59,7 @@
           ? 'No designs have been published in this gallery yet. In the meantime, explore the interfaces and ideas in my software projects.'
           : 'Choose another category to explore more work.';
         const link = el('a', 'btn btn-primary', 'Explore projects ↗');
-        link.href = 'profile.html#projects';
+        link.href = 'index.html#projects';
         empty.append(icon, el('h3', '', heading), el('p', '', description), link);
         grid.appendChild(empty);
       }
