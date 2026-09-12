@@ -28,7 +28,8 @@ a, button, input, textarea { -webkit-tap-highlight-color: transparent; }
 .nav-container { padding: 0 25px; gap: 24px; max-width: none; }
 .nav-logo { margin-right: auto; }
 .nav-logo a { background: none; -webkit-text-fill-color: var(--paper); color: var(--paper); letter-spacing: -.06em; font-size: 24px; white-space: nowrap; }
-.nav-logo a::after { content: "."; color: var(--accent); -webkit-text-fill-color: var(--accent); }
+.nav-logo a::after { display: none; }
+.profile-brand-mark { color: var(--accent); -webkit-text-fill-color: var(--accent); font-size: 22px; margin-left: 3px; }
 .nav-menu { gap: 24px; }
 .nav-link { font-size: 12px; letter-spacing: -.01em; }
 .nav-link::after { height: 1px; }

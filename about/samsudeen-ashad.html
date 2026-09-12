@@ -83,24 +83,15 @@
           ]
         }
     </script>
-    <style>
-        body { margin: 0; font-family: Inter, Arial, sans-serif; background: #0a0a0f; color: #f4f8ff; line-height: 1.65; }
-        .container { max-width: 900px; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
-        h1, h2 { line-height: 1.3; }
-        h1 { font-size: clamp(1.8rem, 5vw, 2.7rem); margin-bottom: 1rem; }
-        h2 { margin-top: 2rem; font-size: 1.35rem; }
-        p { color: rgba(244,248,255,0.86); }
-        ul { padding-left: 1.1rem; }
-        li { margin-bottom: 0.5rem; color: rgba(244,248,255,0.86); }
-        a { color: #7fb3ff; }
-        .label { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(244,248,255,0.6); }
-        .card { border: 1px solid rgba(127,179,255,0.2); border-radius: 12px; padding: 1rem 1rem 0.25rem; margin-top: 1rem; background: rgba(15, 22, 40, 0.55); }
-        .back-link { display: inline-block; margin-top: 1rem; }
-    </style>
+    <link rel="stylesheet" href="../start/assets/css/studio.css">
+    <link rel="stylesheet" href="../start/assets/css/biography.css">
+    <script src="../start/assets/js/experience.js" defer></script>
 </head>
-<body>
-    <main class="container">
-        <p class="label">Canonical Entity Profile</p>
+<body class="studio-page entity-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="entity-nav"><a class="wordmark" href="../start/index.html">sa<span class="brand-asterisk">&#10035;</span><span class="wordmark-name">Samsudeen Ashad</span></a><a href="../start/profile.html">Explore the full profile &#8599;</a><button type="button" data-command-open aria-label="Open quick navigation">&#8984; K</button></header>
+    <main class="container" id="main">
+        <p class="label">Profile &amp; background</p>
         <h1>Who is Samsudeen Ashad?</h1>
         <p>Samsudeen Ashad is a Sri Lankan software engineer and AI automation developer specializing in Retrieval-Augmented Generation (RAG), agentic AI systems, intelligent automation, and modern software engineering.</p>
         <p>He is an undergraduate at NSBM Green University and works as an Associate Software Engineer at Zuse Technologies.</p>
@@ -132,7 +123,7 @@
             <p><strong>What does Samsudeen Ashad specialize in?</strong><br>AI automation, RAG architectures, agentic AI systems, vector search, and software engineering.</p>
             <p><strong>What is Samsudeen Ashad’s GitHub?</strong><br><a href="https://github.com/SamsudeenAshad" target="_blank" rel="noopener">github.com/SamsudeenAshad</a></p>
         </div>
-        <a class="back-link" href="../start/index.html">← Back to portfolio</a>
+        <a class="back-link text-link" href="../start/index.html">← Back to portfolio</a>
     </main>
 </body>
 </html>

@@ -269,7 +269,7 @@
 
     function tick(time) {
         frame = 0;
-        if (!visible || document.hidden || reduced.matches || contextLost) return;
+        if (!gl || !visible || document.hidden || reduced.matches || contextLost) return;
         if (time - lastTime > (coarse ? 66 : 42)) {
             elapsed += Math.min((time - lastTime) / 1000, 0.08);
             lastTime = time;
@@ -283,7 +283,7 @@
     function schedule() {
         if (frame) window.cancelAnimationFrame(frame);
         frame = 0;
-        if (visible && !document.hidden && !reduced.matches && !contextLost) {
+        if (gl && visible && !document.hidden && !reduced.matches && !contextLost) {
             lastTime = performance.now();
             frame = window.requestAnimationFrame(tick);
         }

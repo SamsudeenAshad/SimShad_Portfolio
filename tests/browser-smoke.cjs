@@ -89,7 +89,7 @@ async function assertNoOverflow(page) {
 
 async function responsivePages() {
   for (const width of [360, 390, 768, 1440]) {
-    for (const route of pageRoutes) {
+    for (const route of [...pageRoutes, 'about/samsudeen-ashad.html']) {
       await check(`${route} at ${width}px: assets, content, overflow`, async () => {
         const ctx = await context({ viewport: { width, height: 900 }, isMobile: width < 768, hasTouch: width < 768 });
         try {
@@ -320,20 +320,84 @@ async function projectExplorer() {
   });
 }
 
+async function quickNavigation() {
+  for (const route of [...pageRoutes, 'about/samsudeen-ashad.html']) {
+    await check(`${route}: command palette search, keyboard selection and focus`, async () => {
+      const ctx = await context({ reducedMotion: 'reduce' });
+      try {
+        const page = await open(ctx, route);
+        const trigger = page.locator('[data-command-open]').first();
+        await trigger.focus();
+        await page.keyboard.press('Control+k');
+        const dialog = page.locator('.command-dialog');
+        await dialog.waitFor({ state: 'visible' });
+        const search = dialog.locator('input');
+        await search.fill('not-a-section');
+        assert.match(await dialog.innerText(), /No matches/);
+        await search.fill('projects');
+        assert.equal(await dialog.locator('.command-options a').count(), 1);
+        await page.keyboard.press('ArrowDown');
+        assert.equal(await dialog.locator('[data-selected]').count(), 1);
+        for (let i = 0; i < 6; i++) {
+          await page.keyboard.press('Tab');
+          assert.ok(await dialog.evaluate(el => el.contains(document.activeElement)), 'Focus stays in quick navigation');
+        }
+        await page.keyboard.press('Escape');
+        await dialog.waitFor({ state: 'hidden' });
+        assert.ok(await trigger.evaluate(el => document.activeElement === el));
+        await page.keyboard.press('Control+k');
+        await search.fill('projects');
+        await page.keyboard.press('Enter');
+        await page.waitForURL('**/profile.html#projects');
+        await assertHealthy(page);
+      } finally { await ctx.close(); }
+    });
+  }
+  await check('Copy email succeeds and reports clipboard unavailability honestly', async () => {
+    const ctx = await context({ reducedMotion: 'reduce' });
+    try {
+      const page = await open(ctx, 'start/index.html');
+      await page.evaluate(() => {
+        window.copiedEmail = null;
+        Object.defineProperty(navigator, 'clipboard', { configurable: true, value: {
+          writeText: async value => { window.copiedEmail = value; }
+        } });
+      });
+      await page.locator('[data-copy-email]').click();
+      assert.equal(await page.evaluate(() => window.copiedEmail), 'samsudeenashad@gmail.com');
+      assert.match(await page.locator('#site-toast').innerText(), /copied/);
+      await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', { configurable: true, value: undefined }));
+      await page.locator('[data-copy-email]').click();
+      assert.match(await page.locator('#site-toast').innerText(), /select the address/);
+      await assertHealthy(page);
+    } finally { await ctx.close(); }
+  });
+}
+
 async function reducedMotion() {
   for (const route of pageRoutes) {
     await check(`${route}: reduced motion preserves content and stops continuous animation`, async () => {
       const ctx = await context({ reducedMotion: 'reduce' });
       try {
+        await ctx.addInitScript(() => {
+          window.graphicsDraws = 0;
+          for (const [prototype, method] of [[WebGLRenderingContext.prototype, 'drawElements'], [CanvasRenderingContext2D.prototype, 'fill']]) {
+            const original = prototype[method];
+            prototype[method] = function (...args) { window.graphicsDraws++; return original.apply(this, args); };
+          }
+        });
         const page = await open(ctx, route);
         const continuous = await page.evaluate(() => document.getAnimations().filter(animation => animation.playState === 'running' && animation.effect?.getComputedTiming().iterations === Infinity).map(animation => animation.animationName));
         assert.deepEqual(continuous, [], 'Reduced motion should not leave continuous CSS animation running');
         assert.equal(await page.evaluate(() => getComputedStyle(document.documentElement).scrollBehavior), 'auto');
         if (await page.locator('.core-canvas').count()) {
-          const firstFrame = await page.locator('.core-scene').screenshot();
+          // Verify that reduced motion stops rendering. Pixel equality can vary
+          // with the browser compositor even when the same still is displayed.
+          const firstFrame = await page.evaluate(() => window.graphicsDraws);
+          assert.ok(firstFrame > 0, 'The hero still frame is rendered');
           await page.waitForTimeout(350);
-          const nextFrame = await page.locator('.core-scene').screenshot();
-          assert.ok(nextFrame.equals(firstFrame), 'Reduced-motion hero must render a stable frame');
+          const nextFrame = await page.evaluate(() => window.graphicsDraws);
+          assert.equal(nextFrame, firstFrame, 'Reduced-motion hero must stop ongoing graphics rendering');
         }
         assert.ok(await page.locator('h1').isVisible());
         await assertHealthy(page);
@@ -402,6 +466,7 @@ async function graphicsFallbacks() {
     await localStorageOverrides();
     await gallery();
     await projectExplorer();
+    await quickNavigation();
     await reducedMotion();
     await noJavaScript();
     await graphicsFallbacks();

@@ -17,7 +17,7 @@
     <meta name="twitter:title" content="Samsudeen Ashad - Portfolio">
     <meta name="twitter:description" content="Software Engineering student and full-stack developer portfolio with projects, skills, and design work.">
     <meta name="twitter:image" content="https://samsudeenashad.github.io/SimShad_Portfolio/start/assets/images/SamsuddenAshad.jpg">
-    <meta name="theme-color" content="#0a0a0f">
+    <meta name="theme-color" content="#101211">
     <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👨‍💻</text></svg>">
     <script type="application/ld+json">
         {
@@ -71,7 +71,7 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            background: #0a0a0f;
+            background: #101211;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -86,7 +86,7 @@
         .splash-name {
             font-size: clamp(2rem, 6vw, 3.5rem);
             font-weight: 900;
-            background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 50%, #EC4899 100%);
+            background: linear-gradient(135deg, #f1f2ec, #c1edaa);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -122,18 +122,10 @@
     <div class="splash">
         <div class="splash-name">Samsudeen Ashad</div>
         <div class="splash-tagline">Software Engineer &bull; AI Automation Developer</div>
-        <div class="splash-loader"></div>
+        <a href="start/index.html" style="color:#c1edaa;text-decoration:none;border:1px solid #c1edaa44;padding:12px 22px;border-radius:6px;display:inline-block">Enter portfolio &rarr;</a>
     </div>
     <script>
-        window.addEventListener('load', function() {
-            setTimeout(function() {
-                document.body.style.transition = 'opacity 0.4s ease';
-                document.body.style.opacity = '0';
-                setTimeout(function() {
-                    window.location.href = 'start/index.html';
-                }, 400);
-            }, 1200);
-        });
+        window.location.replace('start/index.html' + window.location.search + window.location.hash);
     </script>
 </body>
 </html>

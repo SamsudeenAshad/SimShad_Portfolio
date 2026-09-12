@@ -1,0 +1,137 @@
+.entity-page {
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
+}
+
+.entity-nav {
+  width:min(1120px,calc(100% - 48px));
+  margin:24px auto 0;
+  padding:19px 24px;
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  gap:20px
+}
+
+.entity-nav>a:nth-child(2) {
+  margin-left:auto;
+  color:var(--muted);
+  font-size:12px
+}
+
+.entity-nav>button {
+  padding:8px 11px;
+  border:1px solid var(--line);
+  border-radius:5px;
+  background:none;
+  font:11px Consolas,monospace;
+  color:var(--muted)
+}
+
+.entity-page .container {
+  width:min(840px,calc(100% - 48px));
+  margin:85px auto 65px
+}
+
+.entity-page .label {
+  font:10px Consolas,monospace;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin-bottom:26px
+}
+
+.entity-page h1 {
+  font-size:clamp(42px,6vw,72px);
+  font-weight:500;
+  line-height:1.06;
+  letter-spacing:-.06em;
+  max-width:730px;
+  margin-bottom:30px
+}
+
+.entity-page h2 {
+  font-size:30px;
+  letter-spacing:-.04em;
+  margin:50px 0 20px;
+  padding-top:25px;
+  border-top:1px solid var(--line)
+}
+
+.entity-page p,.entity-page li {
+  font-size:15px;
+  line-height:1.9;
+  color:#acb5a6
+}
+
+.entity-page p+p {
+  margin-top:14px
+}
+
+.entity-page ul {
+  padding-left:20px
+}
+
+.entity-page li {
+  padding-left:5px;
+  margin:8px 0
+}
+
+.entity-page li::marker {
+  color:var(--accent)
+}
+
+.entity-page main a {
+  color:var(--accent);
+  text-decoration:underline;
+  text-underline-offset:4px
+}
+
+.entity-page .card {
+  padding:30px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:var(--surface)
+}
+
+.entity-page .card p+p {
+  margin-top:25px
+}
+
+.entity-page .card strong {
+  color:var(--paper);
+  font-weight:500
+}
+
+.entity-page .back-link {
+  margin-top:32px;
+  text-decoration:none
+}
+
+@media(max-width:600px) {
+  .entity-nav {
+    width:calc(100% - 28px);
+    padding:16px;
+    gap:13px
+  }
+  .entity-nav .wordmark-name {
+    display:none
+  }
+  .entity-nav>a:nth-child(2) {
+    font-size:10px
+  }
+  .entity-page .container {
+    width:calc(100% - 40px);
+    margin-top:55px
+  }
+  .entity-page p,.entity-page li {
+    font-size:14px
+  }
+  .entity-page .card {
+    padding:22px
+  }
+  .entity-page h2 {
+    font-size:27px
+  }
+}
