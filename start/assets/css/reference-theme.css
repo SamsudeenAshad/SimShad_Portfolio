@@ -81,6 +81,19 @@ button, input, textarea { font-family: var(--font-body); }
 .nav-contact:hover { color: #4c100d !important; }
 .wordmark, .nav-logo a { font-family: var(--font-body); font-weight: 800; }
 .wordmark-name { font-family: var(--font-mono); font-size: 9px; letter-spacing: .02em; }
+.studio-nav .full-name-brand, .nav-logo a.full-name-brand, .entity-nav .full-name-brand {
+  font-size: 20px;
+  letter-spacing: -.045em;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+@media (max-width: 700px) {
+  .studio-nav .full-name-brand, .nav-logo a.full-name-brand, .entity-nav .full-name-brand { font-size: 16px; }
+}
+@media (max-width: 420px) {
+  .studio-nav .nav-contact { display: none; }
+  .entity-nav { flex-wrap: wrap; }
+}
 .brand-asterisk, .profile-brand-mark { color: #f0b25e; -webkit-text-fill-color: #f0b25e; }
 .command-trigger, .nav-command { border-color: #e5b78c55 !important; color: #f9e4c5 !important; border-radius: 0; }
 
