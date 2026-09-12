@@ -25,6 +25,7 @@
     var height = 0;
     var visible = true;
     var contextLost = false;
+    var manuallyPaused = false;
     var frame = 0;
     var lastTime = 0;
     var elapsed = 0;
@@ -103,9 +104,9 @@
             ' float right=box(r.x,0.68,0.24)*max(0.2,r.z+0.55);',
             ' float rim=pow(1.0-max(0.0,n.z),3.0);',
             ' float base=38.0+135.0*top+150.0*strip+64.0*right+60.0*rim;',
-            ' float mint=right*11.0+rim*5.0;',
-            ' vec3 color=vec3(base*0.94-mint,base*1.015+mint*0.65,base*1.01+mint*0.25)/255.0;',
-            ' gl_FragColor=vec4(min(color,vec3(0.97,0.98,0.975)),1.0);',
+            ' float copper=right*12.0+rim*6.0;',
+            ' vec3 color=vec3(base*1.23+copper,base*0.82+copper*0.45,base*0.47+copper*0.2)/255.0;',
+            ' gl_FragColor=vec4(min(color,vec3(1.0,0.94,0.82)),1.0);',
             '}'
         ].join('\n');
         function shader(type, source) {
@@ -183,10 +184,10 @@
         var rightBox = Math.exp(-Math.pow((rx - 0.68) / 0.24, 2)) * Math.max(0.2, rz + 0.55);
         var rim = Math.pow(1 - Math.max(0, nz), 3);
         var base = 30 + 120 * topBox + 135 * strip + 64 * rightBox + 60 * rim;
-        var mint = rightBox * 15 + rim * 7;
-        var r = Math.min(245, base * 0.94 - mint);
-        var g = Math.min(249, base * 1.015 + mint * 0.65);
-        var b = Math.min(247, base * 1.01 + mint * 0.25);
+        var copper = rightBox * 15 + rim * 7;
+        var r = Math.min(245, base * 1.23 + copper);
+        var g = Math.min(249, base * 0.82 + copper * 0.45);
+        var b = Math.min(247, base * 0.47 + copper * 0.2);
         return 'rgb(' + (r | 0) + ',' + (g | 0) + ',' + (b | 0) + ')';
     }
 
@@ -269,7 +270,7 @@
 
     function tick(time) {
         frame = 0;
-        if (!gl || !visible || document.hidden || reduced.matches || contextLost) return;
+        if (!gl || !visible || document.hidden || reduced.matches || manuallyPaused || contextLost) return;
         if (time - lastTime > (coarse ? 66 : 42)) {
             elapsed += Math.min((time - lastTime) / 1000, 0.08);
             lastTime = time;
@@ -283,7 +284,7 @@
     function schedule() {
         if (frame) window.cancelAnimationFrame(frame);
         frame = 0;
-        if (gl && visible && !document.hidden && !reduced.matches && !contextLost) {
+        if (gl && visible && !document.hidden && !reduced.matches && !manuallyPaused && !contextLost) {
             lastTime = performance.now();
             frame = window.requestAnimationFrame(tick);
         }
@@ -312,6 +313,10 @@
         if (visible && !reduced.matches) scroll = Math.min(window.scrollY / window.innerHeight, 1.5);
     }, { passive: true });
     document.addEventListener('visibilitychange', schedule);
+    document.addEventListener('portfolio:motionchange', function (event) {
+        manuallyPaused = !!event.detail.paused;
+        schedule();
+    });
     canvas.addEventListener('webglcontextlost', function (event) {
         event.preventDefault();
         contextLost = true;

@@ -1,5 +1,5 @@
 .entity-page {
-  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
+  font-family:Manrope,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
 }
 
 .entity-nav {
@@ -62,7 +62,7 @@
 .entity-page p,.entity-page li {
   font-size:15px;
   line-height:1.9;
-  color:#acb5a6
+  color:#c6ae95
 }
 
 .entity-page p+p {

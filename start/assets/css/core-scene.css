@@ -42,9 +42,9 @@
 .core-fallback {
     position: absolute;
     inset: 19%;
-    border: clamp(28px, 5vw, 55px) solid #64716c;
-    border-top-color: #d4ddd8;
-    border-bottom-color: #343d39;
+    border: clamp(28px, 5vw, 55px) solid #8a6c4b;
+    border-top-color: #e4d9cd;
+    border-bottom-color: #47392a;
     border-radius: 50%;
     transform: rotate(-33deg) skewY(-13deg);
     box-shadow: inset 5px 4px 14px #ffffff24, 12px 30px 40px #0005;
@@ -55,9 +55,9 @@
     content: "";
     position: absolute;
     inset: -35%;
-    border: clamp(23px, 4vw, 44px) solid #75877d;
-    border-top-color: #c4d2c9;
-    border-left-color: #36463d;
+    border: clamp(23px, 4vw, 44px) solid #a47f58;
+    border-top-color: #dbccbb;
+    border-left-color: #4e3f2e;
     border-radius: 50%;
     transform: rotate(68deg) skewX(28deg) scaleX(0.63);
     box-shadow: inset 4px 4px 9px #ffffff19, 8px 13px 20px #0005;
