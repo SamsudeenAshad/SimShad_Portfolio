@@ -212,6 +212,7 @@ section.about, section.skills, section.projects, section.experience, section.git
 .cv-modal-body iframe { width: 100%; height: 100%; border: 0; }
 .cv-fallback { padding: 14px 24px; font-size: 12px; color: var(--accent); text-decoration: underline; display: inline-block; }
 .designs-hero { background: none; padding: 190px 32px 65px; text-align: left; max-width: 1264px; margin: auto; }
+.designs-hero::before { display: none; }
 .designs-hero h1 { color: var(--paper); -webkit-text-fill-color: var(--paper); background: none; font-size: clamp(50px, 7vw, 96px); font-weight: 500; letter-spacing: -.07em; line-height: 1; }
 .designs-hero p { color: var(--muted); margin: 22px 0 0; font-size: 14px; max-width: 540px; }
 .designs-filters, .designs-gallery { width: min(100% - 96px, 1200px); padding: 0; margin: 0 auto 35px; justify-content: flex-start; }

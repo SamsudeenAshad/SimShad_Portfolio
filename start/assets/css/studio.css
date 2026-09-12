@@ -461,7 +461,7 @@ html {
 }
 
 .art-coordinate.top {
-  top:8%;
+  top:1%;
   border-top:1px solid var(--line);
   padding-top:14px
 }
@@ -2362,7 +2362,7 @@ html {
     right:0
   }
   .art-coordinate.top {
-    top:7%;
+    top:0;
     padding-top:10px
   }
   .art-coordinate.bottom {
