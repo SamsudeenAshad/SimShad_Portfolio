@@ -1,0 +1,68 @@
+.core-scene {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1.04;
+    min-width: 0;
+    isolation: isolate;
+    contain: layout paint;
+    pointer-events: none;
+}
+
+.core-scene::before {
+    content: "";
+    position: absolute;
+    inset: 12% 3% 8%;
+    border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(145, 177, 164, 0.065), transparent 67%);
+    z-index: -1;
+}
+
+.core-scene::after {
+    content: "";
+    position: absolute;
+    inset: auto 18% 5%;
+    height: 11%;
+    background: radial-gradient(ellipse, rgba(0, 0, 0, 0.38), transparent 68%);
+    z-index: -1;
+}
+
+.core-canvas {
+    display: block;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.7s ease;
+}
+
+.core-scene.is-rendered .core-canvas { opacity: 1; }
+.core-scene.is-rendered .core-fallback { opacity: 0; visibility: hidden; }
+
+.core-fallback {
+    position: absolute;
+    inset: 19%;
+    border: clamp(28px, 5vw, 55px) solid #64716c;
+    border-top-color: #d4ddd8;
+    border-bottom-color: #343d39;
+    border-radius: 50%;
+    transform: rotate(-33deg) skewY(-13deg);
+    box-shadow: inset 5px 4px 14px #ffffff24, 12px 30px 40px #0005;
+    transition: opacity 0.3s ease;
+}
+
+.core-fallback::after {
+    content: "";
+    position: absolute;
+    inset: -35%;
+    border: clamp(23px, 4vw, 44px) solid #75877d;
+    border-top-color: #c4d2c9;
+    border-left-color: #36463d;
+    border-radius: 50%;
+    transform: rotate(68deg) skewX(28deg) scaleX(0.63);
+    box-shadow: inset 4px 4px 9px #ffffff19, 8px 13px 20px #0005;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .core-canvas, .core-fallback { transition: none; }
+}
