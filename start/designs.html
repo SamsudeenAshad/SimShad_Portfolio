@@ -3,7 +3,7 @@
 <head>
     <title>Designs Gallery — Samsudeen Ashad</title>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="UI/UX and graphic design portfolio of Samsudeen Ashad — crafting beautiful, functional interfaces and branding.">
     <meta name="author" content="Samsudeen Ashad">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
@@ -19,13 +19,14 @@
     <meta name="twitter:title" content="Designs Gallery — Samsudeen Ashad">
     <meta name="twitter:description" content="UI/UX interfaces, branding, and visual design work by Samsudeen Ashad.">
     <meta name="twitter:image" content="https://samsudeenashad.github.io/SimShad_Portfolio/start/assets/images/SamsuddenAshad.jpg">
-    <meta name="theme-color" content="#8B5CF6">
+    <meta name="theme-color" content="#101211">
+    <link rel="stylesheet" href="assets/css/studio.css" />
     <link rel="stylesheet" href="assets/css/profile.css" />
+    <link rel="stylesheet" href="assets/css/profile-premium.css" />
     <link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
     <script type="application/ld+json">
         {
@@ -51,55 +52,60 @@
         }
     </script>
 </head>
-<body>
+<body class="profile-page designs-page">
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <!-- Navigation -->
-    <nav class="navbar" id="navbar">
+    <nav class="navbar" id="navbar" aria-label="Main navigation">
         <div class="nav-container">
             <div class="nav-logo">
-                <a href="index.html">SAMSUDEEN ASHAD</a>
+                <a href="index.html" aria-label="Samsudeen Ashad home">ashad</a>
             </div>
             <div class="nav-menu" id="nav-menu">
-                <a href="profile.html#home" class="nav-link">Home</a>
+                <a href="profile.html#home" class="nav-link nav-extra">Home</a>
                 <a href="profile.html#about" class="nav-link">About</a>
                 <a href="profile.html#skills" class="nav-link">Skills</a>
                 <a href="profile.html#projects" class="nav-link">Projects</a>
                 <a href="designs.html" class="nav-link active">Designs</a>
-                <a href="profile.html#github-profile" class="nav-link">GitHub</a>
+                <a href="profile.html#github-profile" class="nav-link nav-extra">GitHub</a>
                 <a href="profile.html#experience" class="nav-link">Experience</a>
-                <a href="profile.html#certifications" class="nav-link">Certifications</a>
+                <a href="profile.html#certifications" class="nav-link nav-extra">Certifications</a>
                 <a href="profile.html#contact" class="nav-link">Contact</a>
             </div>
-            <div class="nav-toggle" id="nav-toggle">
+            <button class="nav-command" type="button" data-command-open aria-label="Open navigation search">? K</button>
+            <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Toggle navigation" aria-controls="nav-menu" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
         </div>
     </nav>
 
+    <main id="main-content">
     <!-- Designs Hero -->
     <section class="designs-hero">
         <div class="designs-hero-content" data-aos="fade-up">
-            <h1>Design Gallery</h1>
+            <span class="hero-eyebrow">EXPLORATIONS / INTERFACE &amp; IDENTITY</span>
+            <h1>Design, with intent.</h1>
             <p>UI/UX interfaces, branding, and visual experiences crafted with attention to detail and purpose.</p>
         </div>
     </section>
 
     <!-- Filter Bar -->
     <div class="designs-filters" id="filtersBar" data-aos="fade-up" data-aos-delay="100">
-        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn active" type="button" data-filter="all" aria-pressed="true">All</button>
         <!-- Additional filter buttons injected by designs.js -->
     </div>
 
     <!-- Gallery -->
     <section class="designs-gallery">
         <div class="gallery-grid" id="galleryGrid">
-            <!-- Cards injected by designs.js -->
+            <noscript><div class="designs-empty"><h3>A space for design explorations.</h3><p>Enable JavaScript to view designs saved in this browser, or explore the software projects.</p><a href="profile.html#projects" class="btn btn-primary">Explore projects ?</a></div></noscript>
         </div>
     </section>
 
+    </main>
     <!-- Lightbox -->
-    <div class="lightbox-overlay" id="lightboxOverlay" role="dialog" aria-modal="true" aria-label="Design preview">
+    <dialog class="lightbox-overlay" id="lightboxOverlay" aria-labelledby="lightboxTitle">
         <div class="lightbox-container">
             <div class="lightbox-image-wrap" id="lightboxImageWrap">
                 <button class="lightbox-close" id="lightboxClose" aria-label="Close preview">&times;</button>
@@ -111,17 +117,14 @@
                 <div class="lightbox-tools" id="lightboxTools"></div>
             </div>
         </div>
-    </div>
+    </dialog>
 
     <!-- Back to Top -->
     <button class="back-to-top" id="backToTop" aria-label="Back to top">
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <!-- Three.js canvas -->
-    <canvas id="three-bg" class="three-bg-canvas"></canvas>
-
-    <!-- Footer -->
+<!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -137,18 +140,19 @@
                     <a href="profile.html#contact">Contact</a>
                 </div>
                 <div class="footer-social">
-                    <a href="https://github.com/SamsudeenAshad" class="social-link" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/samsudeenashad/" class="social-link" target="_blank"><i class="fab fa-linkedin"></i></a>
-                    <a href="tel:+94705390110" class="social-link"><i class="fas fa-phone"></i></a>
-                    <a href="mailto:samsudeenashad@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
+                    <a href="https://github.com/SamsudeenAshad" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/samsudeenashad/" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="tel:+94705390110" class="social-link" aria-label="Call Samsudeen"><i class="fas fa-phone"></i></a>
+                    <a href="mailto:samsudeenashad@gmail.com" class="social-link" aria-label="Email Samsudeen"><i class="fas fa-envelope"></i></a>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Samsudeen Ashad. All rights reserved.</p>
+                <p>&copy; <span data-year>2026</span> Samsudeen Ashad. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script src="assets/js/designs.js"></script>
+    <script src="assets/js/experience.js"></script>
 </body>
 </html>

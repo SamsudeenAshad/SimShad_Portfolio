@@ -3,7 +3,7 @@
 <head>
     <title>Who is Samsudeen Ashad? | Software Engineer & AI Developer</title>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Learn about Samsudeen Ashad, a Sri Lankan software engineer and AI automation developer working with RAG, agentic AI, automation and intelligent software systems.">
     <meta name="keywords" content="Samsudeen Ashad, AI Automation, RAG, Agentic AI, Software Engineering, Vector Search, NSBM Green University, Zuse Technologies">
     <meta name="author" content="Samsudeen Ashad">
@@ -20,19 +20,19 @@
     <meta name="twitter:title" content="Who is Samsudeen Ashad? | Software Engineer & AI Developer">
     <meta name="twitter:description" content="Profile of Samsudeen Ashad covering AI automation, RAG architectures, software engineering work, and open-source projects.">
     <meta name="twitter:image" content="https://samsudeenashad.github.io/SimShad_Portfolio/start/assets/images/SamsuddenAshad.jpg">
-    <meta name="theme-color" content="#667eea">
+    <meta name="theme-color" content="#101211">
+    <link rel="stylesheet" href="assets/css/studio.css" />
     <link rel="stylesheet" href="assets/css/profile.css" />
+    <link rel="stylesheet" href="assets/css/profile-premium.css" />
     <link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👨‍💻</text></svg>">
     
     <!-- Three.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
@@ -110,44 +110,40 @@
         }
     </script>
 </head>
-<body>
+<body class="profile-page">
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <!-- Navigation -->
-    <nav class="navbar" id="navbar">
+    <nav class="navbar" id="navbar" aria-label="Main navigation">
         <div class="nav-container">
             <div class="nav-logo">
-                <a href="index.html">SAMSUDEEN ASHAD</a>
+                <a href="index.html" aria-label="Samsudeen Ashad home">ashad</a>
             </div>
             <div class="nav-menu" id="nav-menu">
-                <a href="#home" class="nav-link">Home</a>
+                <a href="#home" class="nav-link nav-extra">Home</a>
                 <a href="#about" class="nav-link">About</a>
                 <a href="#skills" class="nav-link">Skills</a>
                 <a href="#projects" class="nav-link">Projects</a>
                 <a href="designs.html" class="nav-link">Designs</a>
-                <a href="#github-profile" class="nav-link">GitHub</a>
+                <a href="#github-profile" class="nav-link nav-extra">GitHub</a>
                 <a href="#experience" class="nav-link">Experience</a>
-                <a href="#certifications" class="nav-link">Certifications</a>
+                <a href="#certifications" class="nav-link nav-extra">Certifications</a>
                 <a href="#contact" class="nav-link">Contact</a>
             </div>
-            <div class="nav-toggle" id="nav-toggle">
+            <button class="nav-command" type="button" data-command-open aria-label="Open navigation search">? K</button>
+            <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Toggle navigation" aria-controls="nav-menu" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
         </div>
     </nav>
 
+    <main id="main-content">
     <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-background">
-            <div class="gradient-overlay"></div>
-            <div class="floating-shapes">
-                <div class="shape shape-1"></div>
-                <div class="shape shape-2"></div>
-                <div class="shape shape-3"></div>
-            </div>
-        </div>
+    <section id="home" class="hero" tabindex="-1">
         <div class="hero-content" data-aos="fade-up">
             <div class="hero-text">
+                <span class="hero-eyebrow">THE PERSON BEHIND THE PROJECTS / SRI LANKA</span>
                 <h1 class="hero-title">
                     <span class="highlight">Samsudeen</span> Ashad
                 </h1>
@@ -162,7 +158,7 @@
                         <i class="fas fa-download"></i>
                         Download CV
                     </a>
-                    <button class="btn btn-cv-preview" onclick="openCvPreview()">
+                    <button class="btn btn-cv-preview" type="button" aria-haspopup="dialog">
                         <i class="fas fa-eye"></i>
                         Preview CV
                     </button>
@@ -171,24 +167,24 @@
             <div class="hero-image">
                 <div class="profile-card">
                     <div class="profile-img">
-                        <img src="assets/images/SamsuddenAshad.jpg" alt="Samsudeen Ashad" class="profile-avatar">
+                        <img src="assets/images/SamsuddenAshad.jpg" alt="Samsudeen Ashad" class="profile-avatar" width="600" height="720" fetchpriority="high">
                     </div>
                     <div class="profile-info">
                         <h3>Available for Work</h3>
                         <p>Open to new opportunities</p>
                     </div>
                 </div>
+                <span class="portrait-caption">SAMSUDEEN ASHAD / SOFTWARE &amp; INTELLIGENCE</span>
             </div>
         </div>
-        <div class="scroll-indicator">
-            <div class="scroll-arrow"></div>
-        </div>
+
     </section>
 
     <!-- About Section -->
     <section id="about" class="about">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
+                <span class="section-kicker">01 / A LITTLE CONTEXT</span>
                 <h2>About Me</h2>
                 <p>Get to know more about my journey and passion</p>
             </div>
@@ -220,7 +216,7 @@
                 </div>
                 <div class="about-image" data-aos="fade-left">
                     <div class="image-container">
-                        <img src="assets/images/SamsuddenAshad.jpg" alt="Samsudeen Ashad - Software Engineering Student" class="profile-photo">
+                        <img src="assets/images/SamsuddenAshad.jpg" alt="Samsudeen Ashad - Software Engineering Student" class="profile-photo" loading="lazy" width="600" height="720">
                         <div class="image-overlay">
                             <div class="overlay-content">
                                 <h4>Samsudeen Ashad</h4>
@@ -237,6 +233,7 @@
     <section id="skills" class="skills">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
+                <span class="section-kicker">02 / THE TOOLKIT</span>
                 <h2>Skills & Technologies</h2>
                 <p>Technologies I work with to bring ideas to life</p>
             </div>
@@ -630,17 +627,18 @@
     <section id="projects" class="projects">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
+                <span class="section-kicker">03 / FROM IDEA TO INTERFACE</span>
                 <h2>Featured Projects</h2>
                 <p>A showcase of my recent work and achievements</p>
             </div>
             <div class="projects-grid">
                 <div class="project-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="project-image">
-                        <div class="project-placeholder">�</div>
+                        <div class="project-placeholder" aria-hidden="true">DESIGN ? BUILD ? REFINE</div>
                         <div class="project-overlay">
                             <div class="project-links">
-                                <a href="https://github.com/SamsudeenAshad/Quizer-AI-" class="btn btn-primary" target="_blank">View Code</a>
-                                <a href="https://github.com/SamsudeenAshad/Quizer-AI-" class="btn btn-secondary" target="_blank">Live Demo</a>
+                                <a href="https://github.com/SamsudeenAshad/Quizer-AI-" class="btn btn-primary" target="_blank" rel="noopener noreferrer">View Code</a>
+                                <a href="https://github.com/SamsudeenAshad/Quizer-AI-" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Repository</a>
                             </div>
                         </div>
                     </div>
@@ -659,11 +657,11 @@
                 </div>
                 <div class="project-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="project-image">
-                        <div class="project-placeholder">🍵</div>
+                        <div class="project-placeholder" aria-hidden="true">DESIGN ? BUILD ? REFINE</div>
                         <div class="project-overlay">
                             <div class="project-links">
-                                <a href="https://github.com/SamsudeenAshad/Tea-House" class="btn btn-primary" target="_blank">View Code</a>
-                                <a href="https://github.com/SamsudeenAshad/Tea-House" class="btn btn-secondary" target="_blank">Live Demo</a>
+                                <a href="https://github.com/SamsudeenAshad/Tea-House" class="btn btn-primary" target="_blank" rel="noopener noreferrer">View Code</a>
+                                <a href="https://github.com/SamsudeenAshad/Tea-House" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Repository</a>
                             </div>
                         </div>
                     </div>
@@ -682,11 +680,11 @@
                 </div>
                 <div class="project-card" data-aos="fade-up" data-aos-delay="300">
                     <div class="project-image">
-                        <div class="project-placeholder">📊</div>
+                        <div class="project-placeholder" aria-hidden="true">DESIGN ? BUILD ? REFINE</div>
                         <div class="project-overlay">
                             <div class="project-links">
-                                <a href="https://github.com/SamsudeenAshad/Dashboard" class="btn btn-primary" target="_blank">View Code</a>
-                                <a href="https://github.com/SamsudeenAshad/Dashboard" class="btn btn-secondary" target="_blank">Live Demo</a>
+                                <a href="https://github.com/SamsudeenAshad/Dashboard" class="btn btn-primary" target="_blank" rel="noopener noreferrer">View Code</a>
+                                <a href="https://github.com/SamsudeenAshad/Dashboard" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Repository</a>
                             </div>
                         </div>
                     </div>
@@ -705,7 +703,7 @@
                 </div>
                 <div class="project-card" data-aos="fade-up" data-aos-delay="300">
                     <div class="project-image">
-                        <div class="project-placeholder">🎯</div>
+                        <div class="project-placeholder" aria-hidden="true">DESIGN ? BUILD ? REFINE</div>
                         <div class="project-overlay">
                             <div class="project-links">
                                 <a href="https://github.com/samsudeenashad" class="btn btn-primary">View Details</a>
@@ -728,11 +726,11 @@
                 </div>
                 <div class="project-card" data-aos="fade-up" data-aos-delay="400">
                     <div class="project-image">
-                        <div class="project-placeholder">💼</div>
+                        <div class="project-placeholder" aria-hidden="true">DESIGN ? BUILD ? REFINE</div>
                         <div class="project-overlay">
                             <div class="project-links">
-                                <a href="https://github.com/SamsudeenAshad/business-profile-client" class="btn btn-primary" target="_blank">View Code</a>
-                                <a href="https://github.com/SamsudeenAshad/business-profile-client" class="btn btn-secondary" target="_blank">Live Demo</a>
+                                <a href="https://github.com/SamsudeenAshad/business-profile-client" class="btn btn-primary" target="_blank" rel="noopener noreferrer">View Code</a>
+                                <a href="https://github.com/SamsudeenAshad/business-profile-client" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Repository</a>
                             </div>
                         </div>
                     </div>
@@ -751,11 +749,11 @@
                 </div>
                 <div class="project-card" data-aos="fade-up" data-aos-delay="500">
                     <div class="project-image">
-                        <div class="project-placeholder">🤖</div>
+                        <div class="project-placeholder" aria-hidden="true">DESIGN ? BUILD ? REFINE</div>
                         <div class="project-overlay">
                             <div class="project-links">
-                                <a href="https://github.com/HexaElite/AI-Tutor" class="btn btn-primary" target="_blank">View Code</a>
-                                <a href="https://github.com/HexaElite/AI-Tutor" class="btn btn-secondary" target="_blank">Live Demo</a>
+                                <a href="https://github.com/HexaElite/AI-Tutor" class="btn btn-primary" target="_blank" rel="noopener noreferrer">View Code</a>
+                                <a href="https://github.com/HexaElite/AI-Tutor" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Repository</a>
                             </div>
                         </div>
                     </div>
@@ -774,11 +772,11 @@
                 </div>
                 <div class="project-card" data-aos="fade-up" data-aos-delay="600">
                     <div class="project-image">
-                        <div class="project-placeholder">�</div>
+                        <div class="project-placeholder" aria-hidden="true">DESIGN ? BUILD ? REFINE</div>
                         <div class="project-overlay">
                             <div class="project-links">
-                                <a href="https://github.com/Adhishtanaka/Baminithiya" class="btn btn-primary" target="_blank">View Code</a>
-                                <a href="https://github.com/SamsudeenAshad/disa" class="btn btn-secondary" target="_blank">TypeScript Version</a>
+                                <a href="https://github.com/Adhishtanaka/Baminithiya" class="btn btn-primary" target="_blank" rel="noopener noreferrer">View Code</a>
+                                <a href="https://github.com/SamsudeenAshad/disa" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">TypeScript Version</a>
                             </div>
                         </div>
                     </div>
@@ -803,6 +801,7 @@
     <section id="experience" class="experience">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
+                <span class="section-kicker">04 / ALONG THE WAY</span>
                 <h2>Experience & Education</h2>
                 <p>My journey in technology and academia</p>
             </div>
@@ -869,8 +868,9 @@
     <section id="github-profile" class="github-profile">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
+                <span class="section-kicker">05 / BUILDING IN THE OPEN</span>
                 <h2>GitHub Profile</h2>
-                <p>Live view of my GitHub activity and contributions</p>
+                <p>Selected work, collaborations, and contributions to open source</p>
             </div>
             <div class="github-content">
                 <div class="github-stats" data-aos="fade-up" data-aos-delay="100">
@@ -892,47 +892,14 @@
                     </div>
                 </div>
                 
-                <div class="github-iframe-container" data-aos="fade-up" data-aos-delay="200">
-                    <div class="iframe-header">
-                        <div class="iframe-controls">
-                            <span class="control-dot red"></span>
-                            <span class="control-dot yellow"></span>
-                            <span class="control-dot green"></span>
-                        </div>
-                        <div class="iframe-title">
-                            <i class="fab fa-github"></i>
-                            github.com/SamsudeenAshad
-                        </div>
-                        <div class="iframe-actions">
-                            <a href="https://github.com/SamsudeenAshad" target="_blank" class="btn btn-outline">
-                                <i class="fas fa-external-link-alt"></i>
-                                View on GitHub
-                            </a>
-                        </div>
-                    </div>
-                    <div class="iframe-wrapper">
-                        <iframe 
-                            src="https://github.com/SamsudeenAshad"
-                            title="Samsudeen Ashad GitHub Profile"
-                            width="100%"
-                            height="600"
-                            frameborder="0"
-                            loading="lazy"
-                            sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
-                            referrerpolicy="no-referrer-when-downgrade">
-                        </iframe>
-                        <div class="iframe-overlay">
-                            <div class="loading-message">
-                                <i class="fab fa-github"></i>
-                                <p>Loading GitHub Profile...</p>
-                                <div class="loading-spinner"></div>
-                            </div>
-                        </div>
-                    </div>
+                <p class="github-snapshot">Portfolio activity snapshot. Visit GitHub for current counts and recent work.</p>
+                <div class="github-direct" data-aos="fade-up">
+                    <div><strong>Always building. Always learning.</strong><p>Explore the repositories, contributions, and ideas behind the work.</p></div>
+                    <a href="https://github.com/SamsudeenAshad" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Explore GitHub ?</a>
                 </div>
 
                 <div class="github-highlights" data-aos="fade-up" data-aos-delay="300">
-                    <h3>Recent Activity Highlights</h3>
+                    <h3>Collaboration &amp; activity highlights</h3>
                     <div class="activity-grid">
                         <div class="activity-item">
                             <i class="fas fa-code-branch"></i>
@@ -972,6 +939,7 @@
     <section id="certifications" class="certifications">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
+                <span class="section-kicker">06 / LEARNING & RECOGNITION</span>
                 <h2>Certifications & Achievements</h2>
                 <p>Professional certifications and notable achievements</p>
             </div>
@@ -1114,6 +1082,7 @@
     <section id="contact" class="contact">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
+                <span class="section-kicker">08 / START A CONVERSATION</span>
                 <h2>Get In Touch</h2>
                 <p>Let's connect and discuss opportunities</p>
             </div>
@@ -1138,14 +1107,14 @@
                                 <p>+94 70 539 0110</p>
                             </div>
                         </a>
-                        <a href="https://github.com/SamsudeenAshad" class="contact-item" target="_blank">
+                        <a href="https://github.com/SamsudeenAshad" class="contact-item" target="_blank" rel="noopener noreferrer">
                             <i class="fab fa-github"></i>
                             <div>
                                 <h4>GitHub</h4>
                                 <p>github.com/SamsudeenAshad</p>
                             </div>
                         </a>
-                        <a href="https://www.linkedin.com/in/samsudeenashad/" class="contact-item" target="_blank">
+                        <a href="https://www.linkedin.com/in/samsudeenashad/" class="contact-item" target="_blank" rel="noopener noreferrer">
                             <i class="fab fa-linkedin"></i>
                             <div>
                                 <h4>LinkedIn</h4>
@@ -1171,41 +1140,38 @@
                 <div class="contact-form" data-aos="fade-left">
                     <form
                         id="contactForm"
-                        toolname="contactSamsudeenAshad"
-                        tooldescription="Send a direct profile contact message to Samsudeen Ashad with name, email, subject, and message details."
-                        toolautosubmit
+                        action="mailto:samsudeenashad@gmail.com" method="post" enctype="text/plain"
                     >
                         <div class="form-group">
-                            <input type="text" id="name" name="name" placeholder="Your Name" required>
+                            <label for="name">Your name</label>
+                            <input type="text" id="name" name="name" placeholder="Your Name" required autocomplete="name">
                         </div>
                         <div class="form-group">
-                            <input type="email" id="email" name="email" placeholder="Your Email" required>
+                            <label for="email">Email address</label>
+                            <input type="email" id="email" name="email" placeholder="Your Email" required autocomplete="email">
                         </div>
                         <div class="form-group">
-                            <input type="text" id="subject" name="subject" placeholder="Subject" required>
+                            <label for="subject">What are you working on?</label>
+                            <input type="text" id="subject" name="subject" placeholder="Subject" required autocomplete="off">
                         </div>
                         <div class="form-group">
+                            <label for="message">Tell me a little more</label>
                             <textarea id="message" name="message" rows="6" placeholder="Your Message" required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Send Message</button>
+                        <p class="form-hint">This opens a draft in your email app. You can review it before sending.</p>
+                        <button type="submit" class="btn btn-primary">Prepare email ?</button>
+                        <p class="form-status" id="contactStatus" role="status" aria-live="polite"></p>
                     </form>
                 </div>
             </div>
         </div>
     </section>
 
+    </main>
     <!-- Back to Top Button -->
     <button class="back-to-top" id="backToTop" aria-label="Back to top">
         <i class="fas fa-arrow-up"></i>
     </button>
-
-    <!-- Loading Screen -->
-    <div class="loading-screen" id="loadingScreen">
-        <div class="loading-content">
-            <div class="loading-spinner"></div>
-            <p>Loading Portfolio...</p>
-        </div>
-    </div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -1224,133 +1190,53 @@
                     <a href="#github-profile">GitHub</a>
                     <a href="#experience">Experience</a>
                     <a href="#certifications">Certifications</a>
+                    <a href="#references">References</a>
                     <a href="#contact">Contact</a>
                 </div>
                 <div class="footer-social">
-                    <a href="https://github.com/SamsudeenAshad" class="social-link" target="_blank">
+                    <a href="https://github.com/SamsudeenAshad" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a href="https://www.linkedin.com/in/samsudeenashad/" class="social-link" target="_blank">
+                    <a href="https://www.linkedin.com/in/samsudeenashad/" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                         <i class="fab fa-linkedin"></i>
                     </a>
-                    <a href="tel:+94705390110" class="social-link">
+                    <a href="tel:+94705390110" class="social-link" aria-label="Call Samsudeen">
                         <i class="fas fa-phone"></i>
                     </a>
-                    <a href="mailto:samsudeenashad@gmail.com" class="social-link">
+                    <a href="mailto:samsudeenashad@gmail.com" class="social-link" aria-label="Email Samsudeen">
                         <i class="fas fa-envelope"></i>
                     </a>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Samsudeen Ashad. All rights reserved.</p>
+                <p>&copy; <span data-year>2026</span> Samsudeen Ashad. All rights reserved.</p>
                 <a href="admin.html" class="footer-admin-link" title="Admin Panel">Admin</a>
             </div>
         </div>
     </footer>
 
-    <!-- Add CSS for loading screen -->
-    <style>
-        .loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #0a0a0f;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10000;
-            transition: opacity 0.6s ease, visibility 0.6s ease;
-        }
-        
-        .loading-screen.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-        
-        .loading-content {
-            text-align: center;
-            color: white;
-        }
-        
-        .loading-content p {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.9rem;
-            color: rgba(255,255,255,0.6);
-            letter-spacing: 0.05em;
-        }
-        
-        .loading-spinner {
-            width: 50px;
-            height: 50px;
-            border: 3px solid rgba(255, 255, 255, 0.08);
-            border-top: 3px solid #8B5CF6;
-            border-right: 3px solid #3B82F6;
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-            margin: 0 auto 1.5rem;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-    </style>
-
     <!-- CV Preview Modal -->
-    <div class="cv-modal-overlay" id="cvModal" role="dialog" aria-modal="true" aria-label="CV Preview">
+    <dialog class="cv-modal-overlay" id="cvModal" aria-label="CV preview">
         <div class="cv-modal">
             <div class="cv-modal-header">
                 <h3 class="cv-modal-title">CV Preview</h3>
-                <button class="cv-modal-close" onclick="closeCvPreview()" aria-label="Close CV preview">&times;</button>
+                <button class="cv-modal-close" type="button" aria-label="Close CV preview">&times;</button>
             </div>
             <div class="cv-modal-body">
-                <iframe id="cvIframe" src="" title="CV Preview"></iframe>
+                <iframe id="cvIframe" src="about:blank" title="CV Preview"></iframe>
             </div>
+            <a class="cv-fallback" href="../Ashad CV White.pdf" data-cv-open target="_blank" rel="noopener noreferrer">Open CV in a new tab ?</a>
         </div>
-    </div>
-
-    <!-- Three.js Background Canvas -->
-    <canvas id="three-bg" class="three-bg-canvas"></canvas>
+    </dialog>
 
     <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="assets/js/portfolio-loader.js"></script>
     <script src="assets/js/profile.js"></script>
+    <script src="assets/js/experience.js"></script>
     <!-- WhatsApp Floating Button -->
     <a href="https://wa.me/94705390110" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <script>
-        function openCvPreview() {
-            var modal = document.getElementById('cvModal');
-            var iframe = document.getElementById('cvIframe');
-            iframe.src = encodeURI('../Ashad CV White.pdf');
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeCvPreview() {
-            var modal = document.getElementById('cvModal');
-            var iframe = document.getElementById('cvIframe');
-            modal.classList.remove('active');
-            document.body.style.overflow = '';
-            iframe.src = '';
-        }
-
-        document.getElementById('cvModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeCvPreview();
-            }
-        });
-
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && document.getElementById('cvModal').classList.contains('active')) {
-                closeCvPreview();
-            }
-        });
-    </script>
 </body>
 </html>

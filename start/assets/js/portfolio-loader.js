@@ -31,11 +31,12 @@
     return str.replace(/[&<>"']/g, c => map[c]);
   }
 
-  function sanitizeUrl(url) {
-    if (!url) return '';
+  function sanitizeUrl(url, allowContact = false) {
+    if (typeof url !== 'string' || !url.trim()) return '';
     try {
       const parsed = new URL(url, window.location.origin);
       if (parsed.protocol === 'http:' || parsed.protocol === 'https:') return url;
+      if (allowContact && (parsed.protocol === 'mailto:' || parsed.protocol === 'tel:')) return url;
       if (url.startsWith('/') || url.startsWith('../') || url.startsWith('./')) return url;
     } catch {
       if (url.startsWith('/') || url.startsWith('../') || url.startsWith('./') || url.startsWith('assets/')) return url;
@@ -444,7 +445,7 @@
 
     data.forEach(item => {
       let el;
-      const safeLink = item.link ? sanitizeUrl(item.link) : '';
+      const safeLink = item.link ? sanitizeUrl(item.link, true) : '';
       if (safeLink) {
         el = document.createElement('a');
         el.setAttribute('href', safeLink);

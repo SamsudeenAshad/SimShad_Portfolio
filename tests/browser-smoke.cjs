@@ -2,7 +2,7 @@
  * Browser regression checks for the static portfolio.
  * Start: python -m http.server 8765 --bind 127.0.0.1
  * Run:   node tests/browser-smoke.cjs
- * Optional: BASE_URL, PLAYWRIGHT_MODULE_PATH, CHROME_PATH, SCREENSHOTS_DIR.
+ * Optional: BASE_URL, PLAYWRIGHT_MODULE_PATH, CHROME_PATH, SCREENSHOTS_DIR, SMOKE_MATCH.
  * External requests are blocked deliberately to exercise offline fallbacks.
  * Contact checks never submit a valid message or open an external mail client.
  */
@@ -42,6 +42,7 @@ const results = [];
 let browser;
 
 async function check(name, fn) {
+  if (process.env.SMOKE_MATCH && !new RegExp(process.env.SMOKE_MATCH, 'i').test(name)) return;
   try {
     await fn();
     results.push({ name, passed: true });
@@ -328,7 +329,61 @@ async function reducedMotion() {
         const continuous = await page.evaluate(() => document.getAnimations().filter(animation => animation.playState === 'running' && animation.effect?.getComputedTiming().iterations === Infinity).map(animation => animation.animationName));
         assert.deepEqual(continuous, [], 'Reduced motion should not leave continuous CSS animation running');
         assert.equal(await page.evaluate(() => getComputedStyle(document.documentElement).scrollBehavior), 'auto');
+        if (await page.locator('.core-canvas').count()) {
+          const firstFrame = await page.locator('.core-scene').screenshot();
+          await page.waitForTimeout(350);
+          const nextFrame = await page.locator('.core-scene').screenshot();
+          assert.ok(nextFrame.equals(firstFrame), 'Reduced-motion hero must render a stable frame');
+        }
         assert.ok(await page.locator('h1').isVisible());
+        await assertHealthy(page);
+      } finally { await ctx.close(); }
+    });
+  }
+}
+
+async function noJavaScript() {
+  for (const route of ['start/index.html', 'start/profile.html']) {
+    await check(`${route}: essential content and links work without JavaScript`, async () => {
+      const ctx = await context({ javaScriptEnabled: false });
+      try {
+        const page = await open(ctx, route);
+        assert.ok(await page.locator('h1').isVisible());
+        const cv = page.locator('a[download]').first();
+        assert.ok(await cv.isVisible(), 'Download CTA remains available');
+        assert.ok(await page.locator('a[href="mailto:samsudeenashad@gmail.com"]').count());
+        const projectSelector = route.includes('profile') ? '.project-card' : '.selected-project';
+        assert.ok(await page.locator(projectSelector).first().isVisible(), 'Projects remain readable');
+        await assertNoOverflow(page);
+        await assertHealthy(page);
+      } finally { await ctx.close(); }
+    });
+  }
+}
+
+async function graphicsFallbacks() {
+  for (const disabled of ['webgl', 'all']) {
+    await check(`Hero graphics remain usable with ${disabled === 'all' ? 'all canvas contexts' : 'WebGL'} unavailable`, async () => {
+      const ctx = await context({ reducedMotion: 'reduce' });
+      try {
+        await ctx.addInitScript(mode => {
+          const getContext = HTMLCanvasElement.prototype.getContext;
+          HTMLCanvasElement.prototype.getContext = function (type, ...args) {
+            if (mode === 'all' || /webgl/i.test(type)) return null;
+            return getContext.call(this, type, ...args);
+          };
+        }, disabled);
+        const page = await open(ctx, 'start/index.html');
+        assert.ok(await page.locator('h1').isVisible());
+        if (disabled === 'all') {
+          assert.ok(await page.locator('.core-fallback').isVisible(), 'CSS artwork supplies the final fallback');
+        } else {
+          const rendered = await page.locator('.core-canvas').evaluate(canvas => {
+            const data = canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height).data;
+            return data.some((value, index) => index % 4 === 3 && value > 0);
+          });
+          assert.ok(rendered, 'Software fallback paints visible artwork');
+        }
         await assertHealthy(page);
       } finally { await ctx.close(); }
     });
@@ -348,6 +403,8 @@ async function reducedMotion() {
     await gallery();
     await projectExplorer();
     await reducedMotion();
+    await noJavaScript();
+    await graphicsFallbacks();
   } finally { await browser.close(); }
   const failed = results.filter(result => !result.passed);
   console.log(`\n${results.length - failed.length}/${results.length} browser checks passed.`);
