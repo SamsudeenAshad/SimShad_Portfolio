@@ -1,0 +1,16 @@
+{
+  "name": "simshad-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Server-rendered Samsudeen Ashad portfolio.",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "test:ssr": "node tests/ssr-server.cjs",
+    "test": "node tests/browser-smoke.cjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

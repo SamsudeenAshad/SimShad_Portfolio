@@ -1,6 +1,6 @@
 # Samsudeen Ashad — Portfolio
 
-A static software engineering and AI portfolio. The existing HTML, CSS, JavaScript, public routes, local admin data and résumé are preserved.
+A server-rendered software engineering and AI portfolio. The existing HTML, CSS, JavaScript, public routes, local admin data and résumé are preserved.
 
 [Public portfolio](https://samsudeenashad.github.io/SimShad_Portfolio/)
 
@@ -9,10 +9,16 @@ A static software engineering and AI portfolio. The existing HTML, CSS, JavaScri
 From this directory:
 
 ```sh
-python -m http.server 8765 --bind 127.0.0.1
+npm run dev
 ```
 
-Open `http://127.0.0.1:8765/`. There is no build step or package installation for the site.
+Open `http://127.0.0.1:8765/`. The Node server renders the portfolio HTML on the server and serves the existing static assets.
+
+The old static preview command still works for quick file-only checks:
+
+```sh
+python -m http.server 8765 --bind 127.0.0.1
+```
 
 ## Main files
 
@@ -28,6 +34,10 @@ The current visual direction follows the supplied DEATHAR reference: burgundy, a
 - `start/assets/js/experience.js`: quick navigation (`Ctrl/Cmd + K`), reveals, scroll progress, local time, copy-email feedback and modal focus management.
 - `start/assets/css/unified.css`: layout adjustments for the combined portfolio.
 - `start/assets/js/portfolio-loader.js`: existing `portfolio_*` localStorage integration.
+- `server.js`: local Node SSR server.
+- `ssr/render.js`: shared server-side HTML renderer used locally and on Vercel.
+- `api/index.js`: Vercel serverless SSR entrypoint.
+- `vercel.json`: routes `/`, `/start`, `/start/index.html`, and legacy `/start/profile.html` through SSR.
 
 Project artwork is labeled as an interface concept. Historical GitHub figures retain their snapshot context. The contact form prepares an email draft in the visitor's email application; it has no server delivery backend. Admin and gallery data remain local to the current browser, as in the original site.
 

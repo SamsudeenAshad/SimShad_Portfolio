@@ -1,0 +1,29 @@
+{
+  "version": 2,
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/api/index"
+    },
+    {
+      "source": "/index.html",
+      "destination": "/api/index"
+    },
+    {
+      "source": "/start",
+      "destination": "/api/index"
+    },
+    {
+      "source": "/start/",
+      "destination": "/api/index"
+    },
+    {
+      "source": "/start/index.html",
+      "destination": "/api/index"
+    },
+    {
+      "source": "/start/profile.html",
+      "destination": "/api/index"
+    }
+  ]
+}
